@@ -1,0 +1,120 @@
+<style>
+  h5{
+    font-size: 26px;
+  }
+
+  .button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid #e0b43b;
+  color: #e0b43b;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  width: 120px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  }
+
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    background-color: #e0b43b;
+    color: white;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    background-color: #e0b43b;
+    color: white;
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    background-color: #e0b43b;
+    color: white;
+    opacity: 1;
+    right: 0;
+}
+
+/* 출력 */
+.showExhibition {
+  margin-top: 50px;
+}
+
+.showExhibitionBox {
+    width: 250px;
+    height: 300px;
+    border: 1px solid #e0b43b;
+    display: inline-block; 
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.showExhibitionItem {
+    margin: auto;
+    width: 150px;
+    height: 210px;
+} 
+.itemTitle {
+  color: #e0b43b;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.itemSpot {
+  font-size: 8px;
+}
+
+</style>
+
+<br>
+<br>
+
+<h5>지역별로 열리는 다양한 전시회를 경험해보세요</h5>
+
+<div class="chooseLocation"> 
+  <form action="/exhibition/locationResult" method="GET">
+    <a href="/exhibition/locationResult?location=서울" class="button" style="vertical-align:middle" name="location"> <span> 서울 </span> </a>
+    <a href="/exhibition/locationResult?location=경기" class="button" style="vertical-align:middle" name="location"> <span> 경기 </span> </a>
+    <a href="/exhibition/locationResult?location=인천" class="button" style="vertical-align:middle" name="location"> <span> 인천 </span> </a>
+    <a href="/exhibition/locationResult?location=대구" class="button" style="vertical-align:middle" name="location"> <span> 대구 </span> </a>
+    <a href="/exhibition/locationResult?location=대전" class="button" style="vertical-align:middle" name="location"> <span> 대전 </span> </a>
+    <a href="/exhibition/locationResult?location=울산" class="button" style="vertical-align:middle" name="location"> <span> 울산 </span> </a>
+    <a href="/exhibition/locationResult?location=부산" class="button" style="vertical-align:middle" name="location"> <span> 부산 </span> </a>
+    <a href="/exhibition/locationResult?location=강원" class="button" style="vertical-align:middle" name="location"> <span> 강원 </span> </a>
+    <a href="/exhibition/locationResult?location=광주" class="button" style="vertical-align:middle" name="location"> <span> 광주 </span> </a>
+    <a href="/exhibition/locationResult?location=경상" class="button" style="vertical-align:middle" name="location"> <span> 경상 </span> </a>
+    <a href="/exhibition/locationResult?location=전라" class="button" style="vertical-align:middle" name="location"> <span> 전라 </span> </a>
+    <a href="/exhibition/locationResult?location=충청" class="button" style="vertical-align:middle" name="location"> <span> 충청 </span> </a>
+    <a href="/exhibition/locationResult?location=제주" class="button" style="vertical-align:middle" name="location"> <span> 제주 </span> </a>
+  </form>
+</div>
+<br>
+
+<div class="showExhibition">
+    <% @location_result.each do |p| %>
+    <div class="showExhibitionBox">
+        <div class="showExhibitionItem">
+          <a href='/exhibition/show_detail/<%=p.id%>'>
+            <img src='<%=p.imageAddress%>' width='150px' height="210px">
+            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 15)}" %></h4>
+          </a>
+          <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+        </div>
+    </div>
+    <% end %>    
+</div>

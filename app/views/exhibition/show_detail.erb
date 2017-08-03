@@ -1,0 +1,59 @@
+<!-- 전시회 상세 정보 페이지 -->
+<style>
+  .itemDetail {
+    margin-top: 50px;
+    padding: 10px;
+  }
+  .itemDetailTitle {
+    color: #e0b43b;
+    margin-bottom: 40px;
+  }
+</style>
+  <div class="itemDetail">
+    <h1 class="itemDetailTitle"><%= @exhibi.title%></h1>
+    <div class="row">
+      <div class="col-md-8">
+        <img src=<%= @exhibi.imageAddress%> width='100%' height='auto'>
+      </div>
+      <div class="col-md-4">
+  <table>
+    <tr><h4>일정</h4> <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></tr>
+    <tr><h4>지역</h4> <%= @exhibi.location%></tr>
+    <tr><h4>위치</h4> <%= @exhibi.spot%></tr>
+    <tr><h4>시간</h4> <%= @exhibi.time%></tr>
+    <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
+    <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
+  <tr>
+    <td>
+        <%if current_user.is_like?(@exhibi)%>
+          <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
+            <button>좋아요취소</button>
+          </form>
+        <%else%>
+          <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
+            <button>좋아요</button>
+          </form>  
+        <%end%>
+    </td>
+    <td><%=@exhibi.likes.size%>명이 좋아합니다</td>
+  </tr>
+</table> 
+      </div>
+    </div>
+  </div>
+
+<form action='/exhibition/reply_write' method='post'>
+  <div class='form-group'>
+    <input type='hidden' name='exhibition_id' value="<%= @exhibi.id %>">
+    <textarea name='content' rows='3' cols='120'></textarea>
+  </div>
+  <button type='submit' class='btn btn-default'>후기 남기기</button>
+</form> 
+
+<% @exhibi.replies.each do |r| %>
+  <br>
+  - <%= r.content %>
+  <br>
+<% end %>
+<br><br>
+<a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a>

@@ -1,0 +1,43 @@
+<!--Calendar--> 
+<style>
+  .calendarTitle {
+    font-size: 5px;
+  }
+  
+  .simple-calendar {
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}
+</style>
+<%= month_calendar events: @exhibi do |date, exhibis| %>
+  <br>
+  <%= date.day %>
+  <% exhibis.each do |exhibi| %>
+    <div>
+        <a class="calendarTitle" href='/exhibition/show_detail/<%=exhibi.id%>'>
+        <%= "#{truncate(exhibi.title, :length => 10)}" %>
+        </a>
+    </div>
+  <% end %>
+  <br>
+  <br>
+<% end %>
