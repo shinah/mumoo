@@ -1,0 +1,12 @@
+@import 'semantic-ui';
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+* {
+  font-family: 'Spoqa Han Sans', 'Lato' !important;
+}
+// 아이콘 폰트 깨짐 방지
+i.icon, .fa-plus-circle {
+  font-family: 'icons' !important;
+}
+
+@import 'register'

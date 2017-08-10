@@ -8,6 +8,10 @@
     color: #e0b43b;
     margin-bottom: 40px;
   }
+  .button {
+    border :0;
+    outline :0;
+  }
 </style>
   <div class="itemDetail">
     <h1 class="itemDetailTitle"><%= @exhibi.title%></h1>
@@ -17,6 +21,7 @@
       </div>
       <div class="col-md-4">
   <table>
+    <tr>조회수: <%= @exhibi.impressionist_count(:filter=>:session_hash) %></tr>
     <tr><h4>일정</h4> <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></tr>
     <tr><h4>지역</h4> <%= @exhibi.location%></tr>
     <tr><h4>위치</h4> <%= @exhibi.spot%></tr>
@@ -24,17 +29,19 @@
     <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
     <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
   <tr>
-    <td>
-        <%if current_user.is_like?(@exhibi)%>
-          <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
-            <button>좋아요취소</button>
-          </form>
-        <%else%>
-          <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
-            <button>좋아요</button>
-          </form>  
-        <%end%>
-    </td>
+    <%if user_signed_in? %>
+      <td>
+          <%if current_user.is_like?(@exhibi)%>
+            <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
+              <button class="btn btn-link"><img src = "/img/heart_filled.png" width="50" height="50"></button>
+            </form>
+          <%else%>
+            <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
+              <button class="btn btn-link"><img src = "/img/heart_empty.png" width="50" height="50"></button>
+            </form>  
+          <%end%>
+      </td>
+    <%end%>
     <td><%=@exhibi.likes.size%>명이 좋아합니다</td>
   </tr>
 </table> 
@@ -52,7 +59,7 @@
 
 <% @exhibi.replies.each do |r| %>
   <br>
-  - <%= r.content %>
+  - <%= r.content %><a href='/exhibition/reply_delete/<%=r.id%>'>[삭제]</a><a href='/exhibition/reply_update_view/<%=r.id%>'>[수정]</a>
   <br>
 <% end %>
 <br><br>

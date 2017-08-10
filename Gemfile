@@ -1,5 +1,14 @@
 source 'https://rubygems.org'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'figaro'
+
+gem 'impressionist'
+gem 'will_paginate', '~> 3.1.0'
+
+
 gem "simple_calendar", "~> 2.0"
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

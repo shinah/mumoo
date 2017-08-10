@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks'}
   root 'exhibition#index'
 
   get 'exhibition/index'
@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get 'exhibition/destroy/:id' => "exhibition#destroy" 
   post 'exhibition/:exhibition_id/like' =>'exhibition#like_toggle'
   post 'exhibition/reply_write' => 'exhibition#reply_write'
+  
+  get 'exhibition/liked_list' => 'exhibition#liked_list'
+  get 'exhibition/reply_delete/:id' => 'exhibition#reply_delete'
+  get 'exhibition/reply_update_view/:id' => 'exhibition#reply_update_view'
+  post 'exhibition/reply_update/:id' => 'exhibition#reply_update'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

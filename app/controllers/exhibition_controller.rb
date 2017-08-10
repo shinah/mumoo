@@ -1,5 +1,7 @@
 class ExhibitionController < ApplicationController
   # before_action :authenticate_user!, except: [:index, :main]
+  impressionist actions: [:show_detail]
+  
   def index
     render layout: 'index'
   end
@@ -8,6 +10,7 @@ class ExhibitionController < ApplicationController
     @exhibitions = Exhibition.all
     @exhibiRandom = Exhibition.first(6)
   end
+  
   def create
     exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart],dateEnd: params[:dateEnd],location: params[:location], spot: params[:spot], time: params[:time], callCenter: params[:callCenter],price: params[:price])
     # exhibi.save
@@ -26,6 +29,7 @@ class ExhibitionController < ApplicationController
     #  redirect_to '/users/sign_in'
     #end
     @exhibi = Exhibition.find(params[:id])
+    impressionist(@exhibi)
   end
   
   def calendar
@@ -65,6 +69,25 @@ class ExhibitionController < ApplicationController
   def reply_write
     reply = Reply.create(content: params[:content], exhibition_id: params[:exhibition_id])
     redirect_to :back
+  end
+  
+  def reply_delete
+    @reply = Reply.find(params[:id])
+    @reply.destroy
+    
+    redirect_to :back
+  end
+  def reply_update_view
+    @reply = Reply.find(params[:id])
+  end
+  def reply_update
+    @reply = Reply.find(params[:id])
+    @reply.content = params[:content]
+    @reply.save
+    
+    redirect_to action: "show_detail"
+  end
+  def liked_list
   end
   
 end
