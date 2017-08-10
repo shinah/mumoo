@@ -21,7 +21,10 @@
   text-align: center;
 }
 .searchBox {
+  border-bottom: 4px solid #e0b43b;
   margin: 10px;
+  left: 20%;
+  width: 700px;
 }
 .searchInput {
   width: 100%;
@@ -32,9 +35,27 @@
   border: 0;
   display: inline-block; 
 }
-.searchBoxBtn {
-  display: inline-block;  
+
+.searchIcon {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  top: 0px;
+    right: 0;
 }
+
+.sortBox {
+  margin: auto;
+}
+
+.sortBy {
+  border: 0;
+  padding: 10px;
+  width: 100px;
+  background-color: #e0b43b;
+  color: white;
+}
+
 
 
 /* 출력 */
@@ -54,9 +75,9 @@
 }
 
 .showExhibitionItem {
-    margin: auto;
-    width: 150px;
-    height: 210px;
+  margin: auto;
+  width: 150px;
+  height: 210px;
 } 
 .itemTitle {
   color: #e0b43b;
@@ -110,17 +131,19 @@
       </div><!--/myCarousel-->
   </div>
 </div>
-<div class="row">
-  <div class="searchBox">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <form action="/exhibition/keywordResult" method="GET">
-        <input type="text" class="searchInput" name="search" placeholder="검색어를 입력해주세요">
-        <input type="button" class="btn btn-default" value="검색">       
-      </form>
-    </div>
-    <div class="col-md-3"></div>
-  </div>
+<div class="searchBox form-group has-feedback">
+  <form action="/exhibition/keywordResult" method="GET">
+    <input type="text" class="searchInput" name="search" placeholder="검색어를 입력해주세요">
+    <span class="glyphicon glyphicon-search searchIcon form-control-feedback"></span>
+  </form>
+</div>
+<div class="sortBox">
+    <%= form_tag '/exhibition/main#showExhibition' do %>
+      <!--<input type="hidden" name="type" value="1">-->
+      <input type="submit" class="sortBy" value="조회수순" name="type">
+      <input type="submit" class="sortBy" value="좋아요순" name="type">
+      <!--<button class="btn btn-search" >조회수</button>-->
+    <% end %>
 </div>
 <div class="row">
   <div class="col-md-1">

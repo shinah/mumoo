@@ -32,16 +32,18 @@
 </style>
 
 <div class="showExhibition">
-    <% @exhibi.each do |p| %>
-    <div class="showExhibitionBox">
-        <div class="showExhibitionItem">
-          <a href='/exhibition/show_detail/<%=p.id%>'>
-            <img src='<%=p.imageAddress%>' width='150px' height="210px">
-            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 19)}" %></h4>
-          </a>  
-          <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
-        </div>
-    </div>
-    <% end %>    
+  <% @exhibi.each do |p| %>
+  <div class="showExhibitionBox">
+      <div class="showExhibitionItem">
+        <a href='/exhibition/show_detail/<%=p.id%>'>
+          <img src='<%=p.imageAddress%>' width='150px' height="210px">
+          <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 19)}" %></h4>
+        </a>  
+        <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+      </div>
+  </div>
+  <% end %>    
 </div>
 
+
+<%#= will_paginate @exhibi, :previous_label => '<' , :next_label => '>'  %>

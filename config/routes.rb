@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks'}
   root 'exhibition#index'
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   get 'exhibition/keywordResult' => 'exhibition/keywordResult'
   get 'exhibition/locationResult' => 'exhibition/locationResult'
   get 'exhibition/main'
+  post 'exhibition/main'
   post 'exhibition/create' => 'exhibition#create'
   get 'exhibition/registerForm' 
   get 'exhibition/show' => 'exhibition#show'

@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'gmaps4rails'
+gem 'geocoder'
+gem 'ratyrate'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'

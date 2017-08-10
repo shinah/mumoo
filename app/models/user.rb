@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :exhibitions
   has_many :likes
+  has_many :replies
   has_many :liked_exhibitons, through: :likes, source: :exhibition
+  
+  ratyrate_rater
+  
   def is_like?(exhibition)
     Like.find_by(user_id: self.id, exhibition_id: exhibition.id).present?
   end

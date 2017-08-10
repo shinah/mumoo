@@ -7,8 +7,18 @@ class ExhibitionController < ApplicationController
   end
 
   def main
-    @exhibitions = Exhibition.all
     @exhibiRandom = Exhibition.first(6)
+    
+    @exhibitions = Exhibition.all
+    #@exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 5).order("id desc")
+    # like = Like.find_by(user_id: user.id, exhibition_id: exhibition_id)
+    type = params[:type]
+    if type == '조회수순'
+      @exhibitions = Exhibition.order('impressions_count DESC')
+    elsif type == '좋아요순'
+      @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).order('exhibition_count desc')     
+    else
+    end
   end
   
   def create
@@ -30,6 +40,12 @@ class ExhibitionController < ApplicationController
     #end
     @exhibi = Exhibition.find(params[:id])
     impressionist(@exhibi)
+    
+   # @users = User.all
+    #@hash = Gmaps4rails.build_markers(@users) do |user, marker|
+     #   marker.lat user.lat
+      #  marker.lng user.long
+      #end
   end
   
   def calendar
@@ -67,7 +83,7 @@ class ExhibitionController < ApplicationController
   end
   
   def reply_write
-    reply = Reply.create(content: params[:content], exhibition_id: params[:exhibition_id])
+    reply = Reply.create(content: params[:content], exhibition_id: params[:exhibition_id], user_id:params[:user])
     redirect_to :back
   end
   
@@ -85,7 +101,7 @@ class ExhibitionController < ApplicationController
     @reply.content = params[:content]
     @reply.save
     
-    redirect_to action: "show_detail"
+    redirect_to '/exhibition/show'
   end
   def liked_list
   end

@@ -1,4 +1,4 @@
-*= require simple_calendar
+/**= require simple_calendar*/
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,7 +15,6 @@
  *= require_self
  */
  
- html {
-    font-family: 'Nanum Gothic', sans-serif!important;
- }
- 
+/*html {*/
+/*    font-family: 'Nanum Gothic', sans-serif!important;*/
+/* }*/

@@ -1,4 +1,12 @@
 <!-- 전시회 상세 정보 페이지 -->
+<head>
+  <script type=”text/javascript”>
+  
+  function say(){
+    alert("후기 남기신 후에 별점도 매겨주시면 감사하겠습니다.");
+  }
+  </script>
+</head>
 <style>
   .itemDetail {
     margin-top: 50px;
@@ -12,8 +20,12 @@
     border :0;
     outline :0;
   }
+/*  .reply_set{
+    background:#FAFABE;
+  }*/
 </style>
   <div class="itemDetail">
+    <a href="/exhibition/main">메인</a>
     <h1 class="itemDetailTitle"><%= @exhibi.title%></h1>
     <div class="row">
       <div class="col-md-8">
@@ -21,10 +33,25 @@
       </div>
       <div class="col-md-4">
   <table>
-    <tr>조회수: <%= @exhibi.impressionist_count(:filter=>:session_hash) %></tr>
+    <!--tr>조회수: <%#= @exhibi.impressionist_count(:filter=>:session_hash) %></tr-->
+    <tr>조회수: <%= @exhibi.impressionist_count %></tr>
     <tr><h4>일정</h4> <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></tr>
     <tr><h4>지역</h4> <%= @exhibi.location%></tr>
     <tr><h4>위치</h4> <%= @exhibi.spot%></tr>
+    <!-- 지도 -->
+   <div id="map" style="width:400px;height:200px;">
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a422123e9d34becdb38214c20865844c"></script>
+   <script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new daum.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new daum.maps.Map(container, options);
+	</script>
+	</div>
+    <!-- 지도 끝 -->
     <tr><h4>시간</h4> <%= @exhibi.time%></tr>
     <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
     <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
@@ -49,17 +76,29 @@
     </div>
   </div>
 
-<form action='/exhibition/reply_write' method='post'>
-  <div class='form-group'>
-    <input type='hidden' name='exhibition_id' value="<%= @exhibi.id %>">
-    <textarea name='content' rows='3' cols='120'></textarea>
-  </div>
-  <button type='submit' class='btn btn-default'>후기 남기기</button>
-</form> 
+<%if user_signed_in? %>
+  <form action='/exhibition/reply_write' method='post'>
+    <div class='form-group'>
+      <input type='hidden' name='exhibition_id' value="<%= @exhibi.id %>">
+      <input type='hidden' name='user' value="<%= current_user.id %>">
+      <textarea name='content' rows='3' cols='120' placeholder='네티켓에 어긋나는 댓글 작성시 임의로 삭제 및 경고조치 받을수 있습니다.' required></textarea>
+    </div>
+    <button type='submit' class='btn btn-default'>후기 남기기</button>
+  </form>
+<%end%>
 
+<h4>전시회 후기</h4>
 <% @exhibi.replies.each do |r| %>
-  <br>
-  - <%= r.content %><a href='/exhibition/reply_delete/<%=r.id%>'>[삭제]</a><a href='/exhibition/reply_update_view/<%=r.id%>'>[수정]</a>
+  <div class="reply_set">
+    - <%= r.content %> <%= rating_for r, 'name', disable_after_rate: true %>
+    <br>
+    <%if user_signed_in? %>
+      <%if current_user.email==r.user.email%>
+        <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
+        <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_update_view/<%=r.id%>'>수정</a></button>
+      <%end%>
+    <%end%>
+  </div>
   <br>
 <% end %>
 <br><br>
