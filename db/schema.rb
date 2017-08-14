@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170810064520) do
     t.string   "dateStart"
     t.string   "dateEnd"
     t.string   "location"
+    t.float    "latitude",          null: false
+    t.float    "longitude",         null: false
     t.string   "spot"
     t.string   "time"
     t.string   "callCenter"

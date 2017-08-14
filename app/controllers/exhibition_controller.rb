@@ -22,8 +22,8 @@ class ExhibitionController < ApplicationController
   end
   
   def create
-    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart],dateEnd: params[:dateEnd],location: params[:location], spot: params[:spot], time: params[:time], callCenter: params[:callCenter],price: params[:price])
-    # exhibi.save
+    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart], dateEnd: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], time: params[:time], callCenter: params[:callCenter],price: params[:price])
+    exhibi.save
     redirect_to'/exhibition/show'
   end
   
@@ -40,12 +40,6 @@ class ExhibitionController < ApplicationController
     #end
     @exhibi = Exhibition.find(params[:id])
     impressionist(@exhibi)
-    
-   # @users = User.all
-    #@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-     #   marker.lat user.lat
-      #  marker.lng user.long
-      #end
   end
   
   def calendar
@@ -84,12 +78,12 @@ class ExhibitionController < ApplicationController
   
   def reply_write
     reply = Reply.create(content: params[:content], exhibition_id: params[:exhibition_id], user_id:params[:user])
-    redirect_to :back
+    redirect_to '/exhibition/show_detail/'+reply.exhibition_id.to_s
   end
   
   def reply_delete
-    @reply = Reply.find(params[:id])
-    @reply.destroy
+    reply = Reply.find(params[:id])
+    reply.destroy
     
     redirect_to :back
   end
@@ -97,11 +91,10 @@ class ExhibitionController < ApplicationController
     @reply = Reply.find(params[:id])
   end
   def reply_update
-    @reply = Reply.find(params[:id])
-    @reply.content = params[:content]
-    @reply.save
-    
-    redirect_to '/exhibition/show'
+    reply = Reply.find(params[:id])
+    reply.content = params[:content]
+    reply.save
+    redirect_to '/exhibition/show_detail/'+reply.exhibition_id.to_s
   end
   def liked_list
   end

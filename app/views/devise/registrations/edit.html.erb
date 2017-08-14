@@ -1,44 +1,98 @@
-<h1> MUMOO </h1>
-<h2> 정보수정</h2>
+<style>
+.field-style{
+  width: 100%;
+  box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; 
+  padding: 8px;
+  outline: none;
+  border: 1px solid #e0b43b;  
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+}
+.update-btn {
+  width:100%;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #e0b43b;
+  padding: 8px 40px 8px 40px;
+  border: solid #e0b43b 2px;
+  text-decoration: none;
+}
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+.update-btn:hover {
+  background: #e0b43b;
+  text-decoration: none;
+}
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+.link-btn{
+  color: #e0b43b;
+  text-align: center;
+  margin: 0 auto;
+}
+</style>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+<div class='container'> 
+  <div class='col-sm-4'>
+  <h1> MUMOO </h1>
+  <h2> EDIT </h2><br />
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+  
+    <label> 이메일 </label>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, :class => 'field-style' %>
+      </div><br />
+  
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
+
+    <label> 현재 비밀번호를 입력해주세요. </label>
+    <div class="field">
+      <%= f.password_field :current_password, autocomplete: "off", :class => 'field-style' %>
+    </div><br />
+
+    <label> 새로운 비밀번호를 입력해주세요.
+      <% if @minimum_password_length %>
+         ( <%= @minimum_password_length %>글자 이상 입력해주세요 )
+      <% end %>
+    </label> <br /> 
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "off", :class => 'field-style' %>
+    </div><br/>
+  
+    <label> 비밀번호를 다시 입력해주세요. </label>
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'field-style' %>
+    </div><br />
+  
+    <div class="actions">
+      <%= f.submit "Update", :class => 'update-btn' %>
+    </div>
+  <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class='col-sm-2'></div>
+  <div class='col-sm-4'>
+  <h1>MUMOO</h1>
+    
+  <h2> Cancel my account </h2> <br/>
+  
+  <label> 탈퇴하시겠습니까? </label>
+  <%= button_to "Cancel my account", 
+    registration_path(resource_name), 
+    data: { confirm: "Are you sure?" }, 
+    method: :delete,
+    :class => 'update-btn'
+  %><br/>
+  
+  <%= link_to "GO BACK", :back, :class => "link-btn" %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p> 탈퇴하시겠습니까? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

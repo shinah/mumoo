@@ -1,16 +1,57 @@
-<h2>Forgot your password?</h2>
+<style>
+.field-style{
+  width: 100%;
+  box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; 
+  padding: 8px;
+  outline: none;
+  border: 1px solid #e0b43b;  
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  }
+  
+ .password-btn {
+    width: 100%;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: Arial;
+    color: #030303;
+    font-size: 15px;
+    background: #ffffff;
+    padding: 6px 40px 6px 40px;
+    border: solid #e0b43b 2px;
+    text-decoration: none;
+  }
+  
+  .password-btn:hover {
+    background: #e0b43b;
+    text-decoration: none;
+  }  
+}  
+</style>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class='container'>
+  <div class= 'col-sm-4'>     
+  <h1> MUMOO </h1>
+  <h2> 비밀번호 찾기 </h2><br />
+  
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+    
+      <label> 이메일 </label>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, :class => 'field-style' %>
+      </div><br />
+    
+      <div class="actions">
+        <%= f.submit "임시 비밀번호 전송", :class => 'password-btn' %>
+      </div><br />
+      
+    <% end %>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

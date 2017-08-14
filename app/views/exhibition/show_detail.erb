@@ -20,7 +20,7 @@
     border :0;
     outline :0;
   }
-/*  .reply_set{
+/*.reply_set{
     background:#FAFABE;
   }*/
 </style>
@@ -39,18 +39,27 @@
     <tr><h4>지역</h4> <%= @exhibi.location%></tr>
     <tr><h4>위치</h4> <%= @exhibi.spot%></tr>
     <!-- 지도 -->
-   <div id="map" style="width:400px;height:200px;">
+   <div id="map" style="width:400px;height:300px;">
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a422123e9d34becdb38214c20865844c"></script>
    <script>
 		var container = document.getElementById('map');
 		var options = {
-			center: new daum.maps.LatLng(33.450701, 126.570667),
+			center: new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>),
 			level: 3
 		};
 
 		var map = new daum.maps.Map(container, options);
+
+    var markerPosition  = new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>);
+    var marker = new daum.maps.Marker({
+        position: markerPosition
+    });
+
+    marker.setMap(map);
+    
+    map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);//교통 정보    
 	</script>
-	</div>
+	</div><br>
     <!-- 지도 끝 -->
     <tr><h4>시간</h4> <%= @exhibi.time%></tr>
     <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>

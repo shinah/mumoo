@@ -6,8 +6,8 @@ class CreateExhibitions < ActiveRecord::Migration
       t.string :dateStart
       t.string :dateEnd
       t.string :location
-      t.float :latitude #지도
-      t.float :longitude#지도
+      t.float :latitude, :null => false
+      t.float :longitude, :null => false
       t.string :spot
       t.string :time
       t.string :callCenter

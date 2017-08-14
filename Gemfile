@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails_db'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'ratyrate'

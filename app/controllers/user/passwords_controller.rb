@@ -1,4 +1,5 @@
 class User::PasswordsController < Devise::PasswordsController
+  devise_for :users, :controllers => { :passwords => "passwords" }
   # GET /resource/password/new
   # def new
   #   super
