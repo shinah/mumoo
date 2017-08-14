@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'exhibition/index'
   get 'exhibition/calendar'
   get 'exhibition/location'
+  get 'exhibition/test'
   get 'exhibition/keywordResult' => 'exhibition/keywordResult'
   get 'exhibition/locationResult' => 'exhibition/locationResult'
   get 'exhibition/main'
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
   get 'exhibition/reply_delete/:id' => 'exhibition#reply_delete'
   get 'exhibition/reply_update_view/:id' => 'exhibition#reply_update_view'
   post 'exhibition/reply_update/:id' => 'exhibition#reply_update'
+  
+  get 'exhibition/hashtag/:tagname' =>'exhibition#hashtags'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

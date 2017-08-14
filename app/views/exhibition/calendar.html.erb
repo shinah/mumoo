@@ -38,6 +38,7 @@
   .has-events {}
 }
 </style>
+<div class="container">
 <%= month_calendar events: @exhibi do |date, exhibis| %>
   <br>
   <%= date.day %>
@@ -50,4 +51,5 @@
   <% end %>
   <br>
   <br>
-<% end %>
+<% end %>  
+</div>

@@ -32,17 +32,19 @@
   font-size: 8px;
 }
 </style>
-<h1 class="searchKeywordTitle"><%= @searchKeyword %>에 대한 검색 결과입니다</h1>
-<div class="showExhibition">
-    <% @keyword_result.each do |p| %>
-    <div class="showExhibitionBox">
-        <div class="showExhibitionItem">
-          <a href='/exhibition/show_detail/<%=p.id%>'>
-            <img src='<%=p.imageAddress%>' width='150px' height="210px">
-            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 19)}" %></h4>
-          </a>  
-          <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
-        </div>
-    </div>
-    <% end %>    
+<div class="container">
+  <h1 class="searchKeywordTitle"><%= @searchKeyword %>에 대한 검색 결과입니다</h1>
+  <div class="showExhibition">
+      <% @keyword_result.each do |p| %>
+      <div class="showExhibitionBox">
+          <div class="showExhibitionItem">
+            <a href='/exhibition/show_detail/<%=p.id%>'>
+              <img src='<%=p.imageAddress%>' width='150px' height="210px">
+              <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 19)}" %></h4>
+            </a>  
+            <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+          </div>
+      </div>
+      <% end %>    
+  </div>
 </div>

@@ -18,3 +18,22 @@
 /*html {*/
 /*    font-family: 'Nanum Gothic', sans-serif!important;*/
 /* }*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+   background-color: transparent!important;
+   background: transparent!important;
+   border-color: transparent!important;
+}
+
+.navbar li { color: #000 }
+
+.nav-center {
+    margin-left: 150px;
+    margin-right: 150px;
+
+}

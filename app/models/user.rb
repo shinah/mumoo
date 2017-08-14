@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
       unless self.where(email: auth.info.email).exists?
         if user.nil?
           user = User.new(
+            name: auth.info.name,
             email: auth.info.email,
             profile_img: auth.info.image,
             password: Devise.friendly_token[0,20]

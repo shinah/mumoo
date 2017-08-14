@@ -14,6 +14,7 @@ class CreateExhibitions < ActiveRecord::Migration
       t.string :price
       t.integer :impressions_count
       t.timestamps null: false
+      t.string :hashtag
     end
   end
 end

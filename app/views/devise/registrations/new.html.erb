@@ -65,10 +65,15 @@
       <%= f.password_field :password, autocomplete: "off", :class => 'field-style' %>
     </div><br />
   
-  <label> 비밀번호를 다시 입력해주세요. </label><span class="required"> *</span>
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'field-style' %>
-  </div><br />
+    <label> 비밀번호를 다시 입력해주세요. </label><span class="required"> *</span>
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'field-style' %>
+    </div><br />
+    
+    <label> 닉네임 </label><span class="required"> *</span>
+    <div class="field">
+      <%= f.text_field :name, autofocus: true, :class => 'field-style' %>
+    </div><br />
 
   <div class="actions">
     <%= f.submit "계정 생성하기", :class => 'account-btn' %>

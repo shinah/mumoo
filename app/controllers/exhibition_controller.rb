@@ -2,27 +2,33 @@ class ExhibitionController < ApplicationController
   # before_action :authenticate_user!, except: [:index, :main]
   impressionist actions: [:show_detail]
   
+  require 'open-uri'
+  require 'nokogiri'
+  require 'webrick/httputils'
+  #require 'addressable/uri'
+  
   def index
     render layout: 'index'
   end
 
   def main
-    @exhibiRandom = Exhibition.first(6)
+    @exhibiRandom = Exhibition.first(4)
     
-    @exhibitions = Exhibition.all
-    #@exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 5).order("id desc")
+    # @exhibitions = Exhibition.all
+    @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 2).order("id desc")
     # like = Like.find_by(user_id: user.id, exhibition_id: exhibition_id)
     type = params[:type]
     if type == '조회수순'
-      @exhibitions = Exhibition.order('impressions_count DESC')
+      @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 2).order("impressions_count DESC")
+      # @exhibitions = Exhibition.order('impressions_count DESC')
     elsif type == '좋아요순'
-      @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).order('exhibition_count desc')     
+      @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 2).order('exhibition_count desc')     
     else
     end
   end
   
   def create
-    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart], dateEnd: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], time: params[:time], callCenter: params[:callCenter],price: params[:price])
+    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart], dateEnd: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], time: params[:time], callCenter: params[:callCenter],price: params[:price],hashtag: params[:hashtag])
     exhibi.save
     redirect_to'/exhibition/show'
   end
@@ -40,6 +46,29 @@ class ExhibitionController < ApplicationController
     #end
     @exhibi = Exhibition.find(params[:id])
     impressionist(@exhibi)
+    
+    # 1번째 방법
+    # uri = Addressable::URI.parse("https://search.naver.com/search.naver?query=#{@exhibi.spot}")
+    # uri.normalize
+    # doc = Nokogiri::HTML(open(uri),nil,'euc-kr')
+    
+    # 2번째 방법
+    # url = "https://search.naver.com/search.naver?query=#{@exhibi.spot}"
+    # url.force_encoding('binary')
+    # url = WEBrick::HTTPUtils.escape(url)
+    # doc = Nokogiri::HTML(open(url),nil,'euc-kr')
+    
+    # 3번째 방법
+    # a = @exhibi.spot
+    # url = "https://search.naver.com/search.naver?query=#{a}"
+    # doc = Nokogiri::HTML(open(url),nil,'euc-kr')
+    
+    # transport_subway = doc.css('dd.subway')
+    # @subway = transport_subway.map
+    
+    # transport_bus = doc.css('dd.bus')
+    # @bus = transport_bus.map
+  
   end
   
   def calendar
@@ -97,6 +126,10 @@ class ExhibitionController < ApplicationController
     redirect_to '/exhibition/show_detail/'+reply.exhibition_id.to_s
   end
   def liked_list
+  end
+  def hashtags
+      @tag = Tag.find_by(tagname: params[:tagname])
+      @exhibititons = @tag.exhibitions
   end
   
 end

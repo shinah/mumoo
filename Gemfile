@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'nokogiri'
+
 gem 'rails_db'
 gem 'gmaps4rails'
 gem 'geocoder'

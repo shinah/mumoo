@@ -24,6 +24,7 @@
     background:#FAFABE;
   }*/
 </style>
+<div class="container">
   <div class="itemDetail">
     <a href="/exhibition/main">메인</a>
     <h1 class="itemDetailTitle"><%= @exhibi.title%></h1>
@@ -32,83 +33,92 @@
         <img src=<%= @exhibi.imageAddress%> width='100%' height='auto'>
       </div>
       <div class="col-md-4">
-  <table>
-    <!--tr>조회수: <%#= @exhibi.impressionist_count(:filter=>:session_hash) %></tr-->
-    <tr>조회수: <%= @exhibi.impressionist_count %></tr>
-    <tr><h4>일정</h4> <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></tr>
-    <tr><h4>지역</h4> <%= @exhibi.location%></tr>
-    <tr><h4>위치</h4> <%= @exhibi.spot%></tr>
-    <!-- 지도 -->
-   <div id="map" style="width:400px;height:300px;">
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a422123e9d34becdb38214c20865844c"></script>
-   <script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>),
-			level: 3
-		};
-
-		var map = new daum.maps.Map(container, options);
-
-    var markerPosition  = new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>);
-    var marker = new daum.maps.Marker({
-        position: markerPosition
-    });
-
-    marker.setMap(map);
+      <table>
+        <!--tr>조회수: <%#= @exhibi.impressionist_count(:filter=>:session_hash) %></tr-->
+        <tr><h4>조회수</h4><%= @exhibi.impressionist_count %></tr>
+        <tr><h4>일정</h4> <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></tr>
+        <tr><h4>지역</h4> <%= @exhibi.location%></tr>
+        <tr><h4>위치</h4> <%= @exhibi.spot%></tr>
+        <!-- 지도 -->
+        <div id="map" style="width:400px;height:300px;">
+         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a422123e9d34becdb38214c20865844c"></script>
+         <script>
+        		var container = document.getElementById('map');
+        		var options = {
+        			center: new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>),
+        			level: 3
+        		};
+        
+        		var map = new daum.maps.Map(container, options);
+        
+            var markerPosition  = new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>);
+            var marker = new daum.maps.Marker({
+                position: markerPosition
+            });
+        
+            marker.setMap(map);
+            
+            //map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);//교통 정보    
+      	  </script>
+        </div>      <!-- 지도 끝 -->
+    	
     
-    map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);//교통 정보    
-	</script>
-	</div><br>
-    <!-- 지도 끝 -->
-    <tr><h4>시간</h4> <%= @exhibi.time%></tr>
-    <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
-    <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
-  <tr>
-    <%if user_signed_in? %>
-      <td>
-          <%if current_user.is_like?(@exhibi)%>
-            <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
-              <button class="btn btn-link"><img src = "/img/heart_filled.png" width="50" height="50"></button>
-            </form>
-          <%else%>
-            <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
-              <button class="btn btn-link"><img src = "/img/heart_empty.png" width="50" height="50"></button>
-            </form>  
+        <tr>
+          <h4>대중 교통</h4>
+          <p>지하철: <%= @subway %></p>
+          <p>버스: <%= @bus %></p>
+        </tr>
+        <tr><h4>시간</h4> <%= @exhibi.time%></tr>
+        <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
+        <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
+        <tr><h5><%= render_with_hashtags(@exhibi.hashtag) %></h5>
+        <tr>
+          <%if user_signed_in? %>
+            <td>
+              <%if current_user.is_like?(@exhibi)%>
+                <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
+                  <button class="btn btn-link"><img src = "/img/heart_filled.png" width="50" height="50"></button>
+                </form>
+              <%else%>
+                <form action='/exhibition/<%=@exhibi.id%>/like' method='post'>
+                  <button class="btn btn-link"><img src = "/img/heart_empty.png" width="50" height="50"></button>
+                </form>  
+              <%end%>
+            </td>
           <%end%>
-      </td>
-    <%end%>
-    <td><%=@exhibi.likes.size%>명이 좋아합니다</td>
-  </tr>
-</table> 
+          <td><%=@exhibi.likes.size%>명이 좋아합니다</td>
+        </tr>
+      </table> 
+    </div>
+  </div>
+</div>
+<div class="commentBox">
+  <%if user_signed_in? %>
+    <form action='/exhibition/reply_write' method='post'>
+      <div class='form-group'>
+        <input type='hidden' name='exhibition_id' value="<%= @exhibi.id %>">
+        <input type='hidden' name='user' value="<%= current_user.id %>">
+        <textarea name='content' rows='3' cols='120' placeholder='네티켓에 어긋나는 댓글 작성시 임의로 삭제 및 경고조치 받을수 있습니다.' required></textarea>
       </div>
-    </div>
-  </div>
-
-<%if user_signed_in? %>
-  <form action='/exhibition/reply_write' method='post'>
-    <div class='form-group'>
-      <input type='hidden' name='exhibition_id' value="<%= @exhibi.id %>">
-      <input type='hidden' name='user' value="<%= current_user.id %>">
-      <textarea name='content' rows='3' cols='120' placeholder='네티켓에 어긋나는 댓글 작성시 임의로 삭제 및 경고조치 받을수 있습니다.' required></textarea>
-    </div>
-    <button type='submit' class='btn btn-default'>후기 남기기</button>
-  </form>
-<%end%>
-
-<h4>전시회 후기</h4>
-<% @exhibi.replies.each do |r| %>
-  <div class="reply_set">
-    - <%= r.content %> <%= rating_for r, 'name', disable_after_rate: true %>
-    <br>
-    <%if user_signed_in? %>
-      <%if current_user.email==r.user.email%>
-        <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
-        <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_update_view/<%=r.id%>'>수정</a></button>
+      <button type='submit' class='btn btn-default' onclick='say()'>후기 남기기</button>
+    </form>
+  <%end%>
+  
+  <h4>전시회 후기</h4>
+  <% @exhibi.replies.each do |r| %>
+    <div class="reply_set">
+      - <%= r.content %> <%= rating_for r, 'name', disable_after_rate: true %>
+      <br>
+      <%if user_signed_in? %>
+        <%if current_user.email==r.user.email%>
+          <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
+          <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_update_view/<%=r.id%>'>수정</a></button>
+        <%end%>
       <%end%>
-    <%end%>
-  </div>
-  <br>
-<% end %>
-<br><br>
-<a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a>
+    </div>
+    <br>
+  <% end %>
+  <br><br>
+</div>
+  <a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a>
+</div><!-- container -->

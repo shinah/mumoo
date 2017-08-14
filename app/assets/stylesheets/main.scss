@@ -1,4 +1,14 @@
 
+.topOfMain {
+  padding: 100px;
+  background-color: #e0b43b;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
 #myCarousel {
     height: 100%;
 }
@@ -7,7 +17,43 @@
     width: 33%;
 }
 
-.circle {
-    color: red!important;
-    border: 1px solid red!important;
+// .circle {
+//     color: black!important;
+//     border: 1px solid red!important;
+// }
+
+
+.paginationBox {
+  text-align: center;
 }
+
+
+.pagination {
+  margin-top: 30px;
+  color: #424242;
+  a, em, span {
+    padding: 10px 15px;
+    margin: 1px;
+  }
+  span {
+    color: #5f6164;
+    border: 1px solid #b5b5b5;
+  }
+  a{
+    color: #5f6164;
+    border: 1px solid #b5b5b5;
+  }
+  em {
+    font-weight: bold;
+    font-style: normal;
+    padding: 10px 15px;
+    background-color: #e0b43b;
+    color: white;
+  }
+}
+
+.pagination a:hover {
+  background-color: #e0b43b;
+  color: white;
+}
+

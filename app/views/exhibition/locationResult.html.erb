@@ -83,7 +83,7 @@
 
 <br>
 <br>
-
+<div class="container">
 <h5>지역별로 열리는 다양한 전시회를 경험해보세요</h5>
 
 <div class="chooseLocation"> 
@@ -103,8 +103,6 @@
     <a href="/exhibition/locationResult?location=제주" class="button" style="vertical-align:middle" name="location"> <span> 제주 </span> </a>
   </form>
 </div>
-<br>
-
 <div class="showExhibition">
     <% @location_result.each do |p| %>
     <div class="showExhibitionBox">
@@ -117,4 +115,6 @@
         </div>
     </div>
     <% end %>    
+</div>
+  
 </div>

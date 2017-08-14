@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810064520) do
+ActiveRecord::Schema.define(version: 20170814084727) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -37,7 +37,16 @@ ActiveRecord::Schema.define(version: 20170810064520) do
     t.integer  "impressions_count"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "hashtag"
   end
+
+  create_table "exhibitions_tags", id: false, force: :cascade do |t|
+    t.integer "exhibition_id"
+    t.integer "tag_id"
+  end
+
+  add_index "exhibitions_tags", ["exhibition_id"], name: "index_exhibitions_tags_on_exhibition_id"
+  add_index "exhibitions_tags", ["tag_id"], name: "index_exhibitions_tags_on_tag_id"
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -127,6 +136,12 @@ ActiveRecord::Schema.define(version: 20170810064520) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "tagname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -141,6 +156,7 @@ ActiveRecord::Schema.define(version: 20170810064520) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "profile_img"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

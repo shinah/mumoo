@@ -2,18 +2,19 @@
 <style>
 .circle {
     text-align: center;
-    background: gray;
+    background: white;
     border-radius: 200px;
-    color: white;
+    color: black;
     height: 70px;
     font-weight: bold;
     width: 70px;
     display: table;
     margin: 10px auto;
+    border: 4px solid black;
 }
 .circle > a {
     vertical-align: middle;
-    color: white;
+    color: black;
     display: table-cell;
 }
 
@@ -21,8 +22,8 @@
   text-align: center;
 }
 .searchBox {
-  border-bottom: 4px solid #e0b43b;
-  margin: 10px;
+  border: 4px solid black;
+  margin-top: 30px;
   left: 20%;
   width: 700px;
 }
@@ -31,7 +32,7 @@
   padding: 0 0 0 20px;
   line-height: 50px;
   color: #333;
-  background: rgba(255,255,255,0.4);
+  background: white;
   border: 0;
   display: inline-block; 
 }
@@ -87,140 +88,239 @@
 }
 .itemSpot {
   font-size: 8px;
+  
+  
+  
+
 }
 
-
 </style>
-<div class="row">
-  <div class="span12">
-    <div id="myCarousel" class="carousel fdi-Carousel slide">
-       <!-- Carousel items -->
-        <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-          <div class="carousel-inner onebyone-carosel">
-            <div class="item active">
-              <% @exhibiRandom.each do |r| %>
-                <div class="col-md-2">
+<header class="topOfMain">
+  <div class="row">
+    <div class="span12">
+      <div id="myCarousel" class="carousel fdi-Carousel slide">
+         <!-- Carousel items -->
+          <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
+            <div class="carousel-inner onebyone-carosel">
+              <div class="item active">
+                <% @exhibiRandom.each do |r| %>
+                  <div class="col-md-2">
+                      <a href='/exhibition/show_detail/<%=r.id%>'>
+                        <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
+                      </a>
+                    <div class="description">
+                      <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
+                      <p style="font-size: 5px;"><%= r.spot %></p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="item">
+                <% @exhibiRandom.each do |r| %>
+                  <div class="col-md-2">
                     <a href='/exhibition/show_detail/<%=r.id%>'>
                       <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
                     </a>
-                  <div class="description">
-                    <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
-                    <p style="font-size: 5px;"><%= r.spot %></p>
+                    <div class="description">
+                      <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
+                      <p style="font-size: 5px;"><%= r.spot %></p>
+                    </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
-            <div class="item">
-              <% @exhibiRandom.each do |r| %>
-                <div class="col-md-2">
-                  <a href='/exhibition/show_detail/<%=r.id%>'>
-                    <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
-                  </a>
-                  <div class="description">
-                    <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
-                    <p style="font-size: 5px;"><%= r.spot %></p>
-                  </div>
-                </div>
-              <% end %>
-            </div>
+            <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
+            <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
           </div>
-          <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
-          <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
-        </div>
-        <!--/carousel-inner-->
-      </div><!--/myCarousel-->
+          <!--/carousel-inner-->
+        </div><!--/myCarousel-->
+    </div>
   </div>
-</div>
-<div class="searchBox form-group has-feedback">
-  <form action="/exhibition/keywordResult" method="GET">
-    <input type="text" class="searchInput" name="search" placeholder="검색어를 입력해주세요">
-    <span class="glyphicon glyphicon-search searchIcon form-control-feedback"></span>
-  </form>
-</div>
-<div class="sortBox">
-    <%= form_tag '/exhibition/main#showExhibition' do %>
-      <!--<input type="hidden" name="type" value="1">-->
-      <input type="submit" class="sortBy" value="조회수순" name="type">
-      <input type="submit" class="sortBy" value="좋아요순" name="type">
-      <!--<button class="btn btn-search" >조회수</button>-->
-    <% end %>
-</div>
-<div class="row">
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=서울">서울</a>
-      </div>
+  <div class="row">
+    <div class="searchBox form-group has-feedback">
+      <form action="/exhibition/keywordResult" method="GET">
+        <input type="text" class="searchInput" name="search" placeholder="검색어를 입력해주세요">
+        <span class="glyphicon glyphicon-search searchIcon form-control-feedback"></span>
+      </form>
+    </div>
   </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=경기">경기</a>
-      </div>
+  <div class="row">
+    <div class="sortBox">
+        <%= form_tag '/exhibition/main#showExhibition' do %>
+          <!--<input type="hidden" name="type" value="1">-->
+          <input type="submit" class="sortBy" value="조회수순" name="type">
+          <input type="submit" class="sortBy" value="좋아요순" name="type">
+          <!--<button class="btn btn-search" >조회수</button>-->
+        <% end %>
+    </div>  
   </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=인천">인천</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=대구">대구</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=대전">대전</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=울산">울산</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=부산">부산</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=강원">강원</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=광주">광주</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=경상">경상</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=전라">전라</a>
-      </div>
-  </div>
-  <div class="col-md-1">
-      <div class="circle">
-        <a href="/exhibition/locationResult?location=대구">제주</a>
-      </div>
-  </div>
-</div>
-
-<!-- 전시회 나열 페이지 -->
-
-<div class="showExhibition">
-    <% @exhibitions.each do |p| %>
-    <div class="showExhibitionBox">
-        <div class="showExhibitionItem">
-          <a href='/exhibition/show_detail/<%=p.id%>'>
-            <img src='<%=p.imageAddress%>' width='150px' height="210px">
-            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 15)}" %></h4>
-          </a>
-          <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+  <div class="row">
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=서울">서울</a>
         </div>
     </div>
-    <% end %>    
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=경기">경기</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=인천">인천</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=대구">대구</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=대전">대전</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=울산">울산</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=부산">부산</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=강원">강원</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=광주">광주</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=경상">경상</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=전라">전라</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="circle">
+          <a href="/exhibition/locationResult?location=대구">제주</a>
+        </div>
+    </div>
+  </div>
+</header>
+<!-- 전시회 나열 페이지 -->
+<div class="container">
+  <div class="showExhibition">
+      <% @exhibitions.each do |p| %>
+      <div class="showExhibitionBox">
+          <div class="showExhibitionItem">
+            <a href='/exhibition/show_detail/<%=p.id%>'>
+              <img src='<%=p.imageAddress%>' width='150px' height="210px">
+              <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 15)}" %></h4>
+            </a>
+            <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+          </div>
+      </div>
+      <% end %>    
+  </div>
+  <div class="paginationBox">
+    <%= will_paginate @exhibitions, :previous_label => '<' , :next_label => '>'  %>
+  </div>  
 </div>
 
+
+<script>
+  var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+class Carousel extends React.Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            items: this.props.items,
+            active: this.props.active,
+            direction: ''
+        }
+        this.rightClick = this.moveRight.bind(this)
+        this.leftClick = this.moveLeft.bind(this)
+    }
+
+    generateItems() {
+        var items = []
+        var level
+        console.log(this.state.active)
+        for (var i = this.state.active - 2; i < this.state.active + 3; i++) {
+            var index = i
+            if (i < 0) {
+                index = this.state.items.length + i
+            } else if (i >= this.state.items.length) {
+                index = i % this.state.items.length
+            }
+            level = this.state.active - i
+            items.push(<Item key={index} id={this.state.items[index]} level={level} />)
+        }
+        return items
+    }
+    
+    moveLeft() {
+        var newActive = this.state.active
+        newActive--
+        this.setState({
+            active: newActive < 0 ? this.state.items.length - 1 : newActive,
+            direction: 'left'
+        })
+    }
+    
+    moveRight() {
+        var newActive = this.state.active
+        this.setState({
+            active: (newActive + 1) % this.state.items.length,
+            direction: 'right'
+        })
+    }
+    
+    render() {
+        return(
+            <div id="carousel" className="noselect">
+                <div className="arrow arrow-left" onClick={this.leftClick}><i className="fi-arrow-left"></i></div>
+                <ReactCSSTransitionGroup 
+                    transitionName={this.state.direction}>
+                    {this.generateItems()}
+                </ReactCSSTransitionGroup>
+                <div className="arrow arrow-right" onClick={this.rightClick}><i className="fi-arrow-right"></i></div>
+            </div>
+        )
+    }
+}
+
+class Item extends React.Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            level: this.props.level
+        }
+    }
+    
+    render() {
+        const className = 'item level' + this.props.level
+        return(
+            <div className={className}>
+                {this.props.id}
+            </div>
+        )
+    }
+}
+
+var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ReactDOM.render(<Carousel items={items} active={0}/>, document.getElementById('app'))
+</script>
