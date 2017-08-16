@@ -24,10 +24,13 @@ html, body {
     padding: 0;
 }
 
-.navbar {
-   background-color: transparent!important;
-   background: transparent!important;
-   border-color: transparent!important;
+.navbar-main {
+  margin: 4px;
+   background: #f7e900!important;
+   border: 3px solid black!important;
+   border-radius: 0!important;
+   margin-bottom: 0!important;
+   
 }
 
 .navbar li { color: #000 }
@@ -36,4 +39,18 @@ html, body {
     margin-left: 150px;
     margin-right: 150px;
 
+}
+
+
+.navbar-brand {  
+  padding: 0!important;
+  margin: 0!important;
+  text-align: middle;
+  img {
+    margin: 0;
+    display: block;
+    width: auto;
+    height: 2.5em;
+  }
+     
 }

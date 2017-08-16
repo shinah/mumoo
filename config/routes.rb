@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'exhibition/index'
   get 'exhibition/calendar'
+  get 'exhibition/magazine'
   get 'exhibition/location'
   get 'exhibition/test'
   get 'exhibition/keywordResult' => 'exhibition/keywordResult'

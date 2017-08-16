@@ -23,3 +23,4 @@ Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net
       dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
       time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
             
+

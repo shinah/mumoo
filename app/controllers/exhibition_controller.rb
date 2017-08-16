@@ -28,7 +28,7 @@ class ExhibitionController < ApplicationController
   end
   
   def create
-    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart], dateEnd: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], time: params[:time], callCenter: params[:callCenter],price: params[:price],hashtag: params[:hashtag])
+    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart], dateEnd: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], spot_ascii: params[:spot_ascii], time: params[:time], callCenter: params[:callCenter],price: params[:price],hashtag: params[:hashtag])
     exhibi.save
     redirect_to'/exhibition/show'
   end
@@ -47,30 +47,21 @@ class ExhibitionController < ApplicationController
     @exhibi = Exhibition.find(params[:id])
     impressionist(@exhibi)
     
-    # 1번째 방법
-    # uri = Addressable::URI.parse("https://search.naver.com/search.naver?query=#{@exhibi.spot}")
-    # uri.normalize
-    # doc = Nokogiri::HTML(open(uri),nil,'euc-kr')
+    #교통수단
+    url = "https://search.naver.com/search.naver?query=#{@exhibi.spot_ascii}"
+    doc = Nokogiri::HTML(open(url,'User-Agent' => 'ruby'),nil,'utf-8')
     
-    # 2번째 방법
-    # url = "https://search.naver.com/search.naver?query=#{@exhibi.spot}"
-    # url.force_encoding('binary')
-    # url = WEBrick::HTTPUtils.escape(url)
-    # doc = Nokogiri::HTML(open(url),nil,'euc-kr')
+    doc.css('dd>dl>dd.subway>ul>li>a').each do |x|
+      @subway = x.inner_text
+      doc.css('dd>dl>dd.subway>ul>li>img src').each do |y|
+        @subway_img = y
+      end
+    end
     
-    # 3번째 방법
-    # a = @exhibi.spot
-    # url = "https://search.naver.com/search.naver?query=#{a}"
-    # doc = Nokogiri::HTML(open(url, 'User-Agent' => 'ruby'),nil,'euc-kr')
-    
-     #doc.css('dd>dl>dd.subway>ul').each do |x|
-     #   @subway << x.inner_text
-     #end
-     #transport_subway = doc.css('.subway')
-     #@subway = transport_subway.map
-    
-     #transport_bus = doc.css('.bus')
-     #@bus = transport_bus.map
+    doc.css('dd>dl>dd.bus>ul>li').each do |x|
+      @bus = x.inner_text
+    end
+    #교통수단
   
   end
   
@@ -119,20 +110,27 @@ class ExhibitionController < ApplicationController
     
     redirect_to :back
   end
+  
   def reply_update_view
     @reply = Reply.find(params[:id])
   end
+  
   def reply_update
     reply = Reply.find(params[:id])
     reply.content = params[:content]
     reply.save
     redirect_to '/exhibition/show_detail/'+reply.exhibition_id.to_s
   end
+  
   def liked_list
   end
+  
   def hashtags
       @tag = Tag.find_by(tagname: params[:tagname])
       @exhibititons = @tag.exhibitions
+  end
+  
+  def magazine
   end
   
 end

@@ -1,140 +1,8 @@
 <!-- 금주의 인기 전시회, 전시회 검색, 지역 버튼, 전시회 나열(show.erb), 달력 링크 버튼 -->
-<style>
-.circle {
-    text-align: center;
-    background: white;
-    border-radius: 200px;
-    color: black;
-    height: 70px;
-    font-weight: bold;
-    width: 70px;
-    display: table;
-    margin: 10px auto;
-    border: 4px solid black;
-}
-.circle > a {
-    vertical-align: middle;
-    color: black;
-    display: table-cell;
-}
 
-.description {
-  text-align: center;
-}
-.searchBox {
-  border: 4px solid black;
-  margin-top: 30px;
-  left: 20%;
-  width: 700px;
-}
-.searchInput {
-  width: 100%;
-  padding: 0 0 0 20px;
-  line-height: 50px;
-  color: #333;
-  background: white;
-  border: 0;
-  display: inline-block; 
-}
-
-.searchIcon {
-  padding: 0;
-  margin: 0;
-  font-size: 20px;
-  top: 0px;
-    right: 0;
-}
-
-.sortBox {
-  margin: auto;
-}
-
-.sortBy {
-  border: 0;
-  padding: 10px;
-  width: 100px;
-  background-color: #e0b43b;
-  color: white;
-}
-
-
-
-/* 출력 */
-
-.showExhibition {
-  margin-top: 50px;
-}
-
-.showExhibitionBox {
-    width: 250px;
-    height: 300px;
-    border: 1px solid #e0b43b;
-    display: inline-block; 
-    margin: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-.showExhibitionItem {
-  margin: auto;
-  width: 150px;
-  height: 210px;
-} 
-.itemTitle {
-  color: #e0b43b;
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 12px;
-}
-.itemSpot {
-  font-size: 8px;
-  
-  
-  
-
-}
-
-</style>
-<header class="topOfMain">
+<div class="topOfMain">
   <div class="row">
-    <div class="span12">
-      <div id="myCarousel" class="carousel fdi-Carousel slide">
-         <!-- Carousel items -->
-          <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-            <div class="carousel-inner onebyone-carosel">
-              <div class="item active">
-                <% @exhibiRandom.each do |r| %>
-                  <div class="col-md-2">
-                      <a href='/exhibition/show_detail/<%=r.id%>'>
-                        <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
-                      </a>
-                    <div class="description">
-                      <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
-                      <p style="font-size: 5px;"><%= r.spot %></p>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-              <div class="item">
-                <% @exhibiRandom.each do |r| %>
-                  <div class="col-md-2">
-                    <a href='/exhibition/show_detail/<%=r.id%>'>
-                      <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
-                    </a>
-                    <div class="description">
-                      <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
-                      <p style="font-size: 5px;"><%= r.spot %></p>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-            <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
-            <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
-          </div>
-          <!--/carousel-inner-->
-        </div><!--/myCarousel-->
-    </div>
+    <img class="mainLogoImg" src="/img/mainLogo.png">
   </div>
   <div class="row">
     <div class="searchBox form-group has-feedback">
@@ -216,19 +84,61 @@
         </div>
     </div>
   </div>
-</header>
+</div>
+<div class="middleOfMain">
+<img class="middleTitle" src="/img/middleTitle.png">
+<div id="myCarousel" class="carousel fdi-Carousel slide">
+ <!-- Carousel items -->
+  <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
+    <div class="carousel-inner onebyone-carosel">
+      <div class="item active">
+        <% @exhibiRandom.each do |r| %>
+          <div class="col-md-2">
+              <a href='/exhibition/show_detail/<%=r.id%>'>
+                <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
+              </a>
+            <div class="description">
+              <p style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
+              <p style="font-size: 5px;"><%= r.spot %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="item">
+        <% @exhibiRandom.each do |r| %>
+          <div class="col-md-2">
+            <a href='/exhibition/show_detail/<%=r.id%>'>
+              <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
+            </a>
+            <div class="description">
+              <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
+              <p style="font-size: 5px;"><%= r.spot %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
+    <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
+  </div>
+  <!--/carousel-inner-->
+</div><!--/myCarousel-->  
+</div>
 <!-- 전시회 나열 페이지 -->
+<div class="bodyOfMain">
 <div class="container">
   <div class="showExhibition">
       <% @exhibitions.each do |p| %>
       <div class="showExhibitionBox">
-          <div class="showExhibitionItem">
-            <a href='/exhibition/show_detail/<%=p.id%>'>
-              <img src='<%=p.imageAddress%>' width='150px' height="210px">
-              <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 15)}" %></h4>
-            </a>
-            <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
-          </div>
+        <div class="showExhibitionTitle">
+          <a href='/exhibition/show_detail/<%=p.id%>'>
+            <p class="itemTitle"><%= "#{truncate(p.title, :length => 25)}" %></p>
+          </a>          
+        </div>
+        <div class="showExhibitionItem">
+            <img src='<%=p.imageAddress%>' width='150px' height="210px">
+          <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+        </div>
       </div>
       <% end %>    
   </div>
@@ -236,7 +146,7 @@
     <%= will_paginate @exhibitions, :previous_label => '<' , :next_label => '>'  %>
   </div>  
 </div>
-
+</div>
 
 <script>
   var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;

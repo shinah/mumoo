@@ -36,16 +36,17 @@
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 </head>
 <body>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-main">
     <div class="container-fluid">
         <div class="nav-center">
           <div class="navbar-header">
           <a class="navbar-brand" href="/exhibition/main">
-            MUMOO
+            <img alt="Brand" src="/img/logo.png">
           </a>
         </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/exhibition/calendar">Monthly Exhibition</a></li>
+            <li><a href="/exhibition/magazine">Museum Magazine</a></li>
             <% if user_signed_in? %>
               <%= current_user.name %>님 환영합니다
               <li class="dropdown">

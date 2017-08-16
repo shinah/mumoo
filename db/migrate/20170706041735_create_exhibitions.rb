@@ -9,6 +9,7 @@ class CreateExhibitions < ActiveRecord::Migration
       t.float :latitude, :null => false
       t.float :longitude, :null => false
       t.string :spot
+      t.string :spot_ascii
       t.string :time
       t.string :callCenter
       t.string :price

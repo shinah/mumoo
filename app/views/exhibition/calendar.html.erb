@@ -40,11 +40,11 @@
 </style>
 <div class="container">
 <%= month_calendar events: @exhibi do |date, exhibis| %>
-  <br>
+ <br>
   <%= date.day %>
   <% exhibis.each do |exhibi| %>
     <div>
-        <a class="calendarTitle" href='/exhibition/show_detail/<%=exhibi.id%>'>
+       <a class="calendarTitle" href='/exhibition/show_detail/<%=exhibi.id%>'>
         <%= "#{truncate(exhibi.title, :length => 10)}" %>
         </a>
     </div>
@@ -53,3 +53,6 @@
   <br>
 <% end %>  
 </div>
+
+<div id="calendar"></div>
+<div>

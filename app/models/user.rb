@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :replies
   has_many :liked_exhibitons, through: :likes, source: :exhibition
-  
-  ratyrate_rater
+
+  #attr_accessible :email, :password, :password_confirmation, :remember_me, :name
+  #ratyrate_rater
   
   def is_like?(exhibition)
     Like.find_by(user_id: self.id, exhibition_id: exhibition.id).present?
@@ -24,10 +25,9 @@ class User < ActiveRecord::Base
       unless self.where(email: auth.info.email).exists?
         if user.nil?
           user = User.new(
-            name: auth.info.name,
             email: auth.info.email,
-            profile_img: auth.info.image,
-            password: Devise.friendly_token[0,20]
+            password: Devise.friendly_token[0,20],
+            name: auth.info.name
           )
           user.save!
         end
@@ -42,6 +42,14 @@ class User < ActiveRecord::Base
   end
  
   def email_required?
+    true
+  end
+  
+  def email_changed?
     false
-  end  
+  end
+  
+  def change
+    remove_index :users, :email
+  end
 end

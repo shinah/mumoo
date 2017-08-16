@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'nokogiri'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 gem 'rails_db'
 gem 'gmaps4rails'

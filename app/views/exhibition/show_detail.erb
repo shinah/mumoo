@@ -35,6 +35,7 @@
       <div class="col-md-4">
       <table>
         <!--tr>조회수: <%#= @exhibi.impressionist_count(:filter=>:session_hash) %></tr-->
+        <tr><h4><%= render_with_hashtags(@exhibi.hashtag) %></h4><br>
         <tr><h4>조회수</h4><%= @exhibi.impressionist_count %></tr>
         <tr><h4>일정</h4> <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></tr>
         <tr><h4>지역</h4> <%= @exhibi.location%></tr>
@@ -43,13 +44,13 @@
         <div id="map" style="width:400px;height:300px;">
          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a422123e9d34becdb38214c20865844c"></script>
          <script>
-        		var container = document.getElementById('map');
-        		var options = {
-        			center: new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>),
-        			level: 3
-        		};
+              var container = document.getElementById('map');
+              var options = {
+                 center: new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>),
+                 level: 3
+              };
         
-        		var map = new daum.maps.Map(container, options);
+              var map = new daum.maps.Map(container, options);
         
             var markerPosition  = new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>);
             var marker = new daum.maps.Marker({
@@ -59,19 +60,18 @@
             marker.setMap(map);
             
             //map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);//교통 정보    
-      	  </script>
+           </script>
         </div>      <!-- 지도 끝 -->
-    	
+       
     
         <tr>
           <h4>대중 교통</h4>
-          <p>지하철: <%= @transport_subway %></p>
-          <p>버스: <%= @transport_bus %></p>
+          <p>지하철: <img src="<%= @subway_img %>"> <%= @subway %></p>
+          <p>버스: <%= @bus %></p>
         </tr>
         <tr><h4>시간</h4> <%= @exhibi.time%></tr>
         <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
         <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
-        <tr><h5><%= render_with_hashtags(@exhibi.hashtag) %></h5>
         <tr>
           <%if user_signed_in? %>
             <td>
@@ -107,7 +107,9 @@
   <h4>전시회 후기</h4>
   <% @exhibi.replies.each do |r| %>
     <div class="reply_set">
-      - <%= r.content %> <%= rating_for r, 'name', disable_after_rate: true %>
+      - <%=r.user.name%>님의 후기
+      <br><%= r.content%>   <%#= rating_for r, 'name', disable_after_rate: true %>
+      <br>
       <br>
       <%if user_signed_in? %>
         <%if current_user.email==r.user.email%>

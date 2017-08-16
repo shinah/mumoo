@@ -46,8 +46,12 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
     
-    <label> 닉네임 </label><br/>
-  
+    <label>
+    <% if user_signed_in? %>
+      <%= current_user.name %>님 환영합니다
+    <% end %>
+    </label><br/>
+    
     <label> 이메일 </label>
       <div class="field">
         <%= f.email_field :email, autofocus: true, :class => 'field-style' %>
