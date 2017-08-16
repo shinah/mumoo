@@ -12,68 +12,6 @@
       </form>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=서울">서울</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=경기">경기</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=인천">인천</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=대구">대구</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=대전">대전</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=울산">울산</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=부산">부산</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=강원">강원</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=광주">광주</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=경상">경상</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=전라">전라</a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <div class="circle">
-          <a href="/exhibition/locationResult?location=대구">제주</a>
-        </div>
-    </div>
-  </div>
 </div>
 <div class="middleOfMain blackBoderBox">
 <img class="middleTitle" src="/img/middleTitle.png">
@@ -96,7 +34,7 @@
       </div>
       <div class="item">
         <% @exhibiRandom.each do |r| %>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <a href='/exhibition/show_detail/<%=r.id%>'>
               <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
             </a>
@@ -118,16 +56,22 @@
 <div class="bodyOfMain blackBoderBox">
 <div class="container">
   <div class="row">
-    <div class="sortBox">
-        <%= form_tag '/exhibition/main#showExhibition' do %>
-          <!--<input type="hidden" name="type" value="1">-->
-          <input type="submit" class="sortBy" value="조회수순" name="type">
-          <input type="submit" class="sortBy" value="좋아요순" name="type">
-          <!--<button class="btn btn-search" >조회수</button>-->
-        <% end %>
-    </div>  
+    <%= form_tag '/exhibition/main#showExhibition' do %>
+      <!--<input type="hidden" name="type" value="1">-->
+      <!--<input type="submit" class="sortBy" value="조회수순" name="type">-->
+      <!--<input type="submit" class="sortBy" value="좋아요순" name="type">-->
+      <!--<button class="btn btn-search" >조회수</button>-->
+      <div class="sortBox">
+        <select name="type">
+          <option value="조회수순">조회수순</option>
+          <option value="좋아요순">좋아요순</option>
+        </select>
+        <span class="fa fa-sort-desc"></span>
+      </div>  
+    <input type="submit" class="sortBy" value="정렬">
+    <% end %>
   </div>
-  <div class="showExhibition ">
+  <div id="showExhibition ">
       <% @exhibitions.each do |p| %>
       <div class="showExhibitionBox">
         <div class="showExhibitionTitle">

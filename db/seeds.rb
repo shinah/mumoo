@@ -22,5 +22,52 @@ Exhibition.create(title: "윤서현", imageAddress: "http://post.phinf.naver.net
 Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
       dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
       time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
-            
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+Exhibition.create(title: "눈송이", imageAddress: "http://post.phinf.naver.net/MjAxNzA0MjdfMiAg/MDAxNDkzMjk4NDU5OTYw.UMVzm4UFUZH8h9SvCF4aSkr8fy3hqCCp_uaW56TC2MMg.7JQDVeOf54xpgCYYQWqPfxZ7_4sH_JT9HV7j_MDwHQsg.JPEG/mug_obj_201704272207404579.jpg", 
+      dateStart: "2017-07-15", dateEnd: "2017-09-27", location: "경기", spot: "숙명여대",
+      time: "11:00", callCenter: "01012345914", price: "5000",hashtag: "#콜드플레이",latitude: "35.170320", longitude: "129.127954")
+                                 
+
+                                 
 

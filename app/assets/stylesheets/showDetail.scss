@@ -1,11 +1,39 @@
-
 .itemDetail {
+}
+.itemDetailBox {
   margin-top: 50px;
   padding: 10px;
 }
-.itemDetailTitle {
-  color: #e0b43b;
-  margin-bottom: 40px;
+
+.itemDetailTitleBox{
+  width: 100%;
+  height: 70px;
+  background-image: url("/img/detailTitleImg.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  padding-top: 10px;
+  vertical-align: middle;
+
+  // background-color: yellow;
+  
+  .itemDetailTitle {
+    vertical-align: middle;
+    font-weight: 500;
+    font-size: 33px;
+    color: #00a3df;
+  }  
+  
+}
+
+.itemDetailContentBox{ 
+  margin-top: 100px;
+  
+  .itemDetailImg {
+    padding: 0;
+    box-shadow: 15px 15px 0 black;
+  }
 }
 .button {
   border :0;
@@ -15,27 +43,71 @@
   background:#FAFABE;
 }*/
 
-
-.itemDetailBox {
+.line {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  height: 50px;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  .viewCount {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 300;
+    text-align: center;
+  }
 }
 
+.likeBtn {
+  width: 100px;
+  height: auto;
+  float: right;
+  background-image: url("/img/likeBg.png");
+  background-size: 70% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  margin-top: -5px;
+  text-align: center;
+  }
+.btn-like {
+  padding-top: 10px!important;
+}
+  .likeCount {
+    
+  }
 .commentBox {
+  width: 100%;
+  padding: 10px;
   .createCommentInput {
+    margin-top: 15px;
+    // float: left;
+    display: inline-block;
+    height: 150px;
+    vertical-align: middle;
+    .commentInput {
+      width: 100%;
+      left: 20%;
+      height: 80px;
+      background: #f7e900;
+      color: black;
+    }
   }
-  .commentInput {
-  margin-top: 30px;
-  left: 20%;
-  height: 80px;
-  width: 700px;
-  background: #f7e900;
-  color: black;
-  }
+
   
   .createCommentBtn {
-    padding: 50px;
+    text-align: center;
+    padding: 20px 0  20px 0;
+    height: 150px;
     display: inline-block;
+    vertical-align: middle;
   }
   .commentBtn {
+    display: inline;
   }
 }
 
+
+
+.contentFont {
+  font-size: 10px;
+}

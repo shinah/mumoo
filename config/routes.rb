@@ -8,10 +8,16 @@ Rails.application.routes.draw do
   get 'exhibition/calendar'
   get 'exhibition/magazine'
   get 'exhibition/magazine_index'
+  get 'exhibition/magazine_show/:id' => 'exhibition#magazine_show'
+  # get 'exhibition/han_index'
+  # get 'exhibition/daerim_index'
+  # get 'exhibition/seoul_index'
+  # get 'exhibition/joong_index'
   post 'exhibition/magazine_create'
   get 'exhibition/magazine_edit/:id' => 'exhibition#magazine_edit'
   get 'exhibition/magazine_destroy/:id' => 'exhibition#magazine_destroy'
   post 'exhibition/magazine_update/:id' => 'exhibition#magazine_update'
+  get 'exhibition/magazineRegister'
 
 
   get 'exhibition/location'
@@ -35,6 +41,8 @@ Rails.application.routes.draw do
   post 'exhibition/reply_update/:id' => 'exhibition#reply_update'
   
   get 'exhibition/hashtag/:tagname' =>'exhibition#hashtags'
+  get 'exhibition/liked_magazine'
+  post 'exhibition/:post_id/like2' => 'exhibition#liked_magazine_toggle';
   
 
   # The priority is based upon order of creation: first created -> highest priority.

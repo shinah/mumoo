@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816164257) do
+ActiveRecord::Schema.define(version: 20170816204918) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(version: 20170816164257) do
   add_index "likes", ["exhibition_id"], name: "index_likes_on_exhibition_id"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
+  create_table "magazines", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "magazines", ["post_id"], name: "index_magazines_on_post_id"
+  add_index "magazines", ["user_id"], name: "index_magazines_on_user_id"
+
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"
     t.string   "rateable_type"
@@ -107,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170816164257) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "spot_name"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

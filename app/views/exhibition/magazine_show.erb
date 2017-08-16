@@ -1,0 +1,38 @@
+<br>
+<div class="container">
+<a href='/exhibition/magazineRegister'><button type="button" class="btn btn-outline-warning" style="float: right;"><i class="fa fa-pencil-square-o" aria-hidden="true"> 포스팅</i></button></a><br><br>
+     <div class=" blackBoderBox">
+        <div class="container">
+     <h3> <i class="fa fa-quote-left" aria-hidden="true"></i> <%= @post.title %> <i class="fa fa-quote-right" aria-hidden="true"></i> </h3>
+ </a>
+     <p>Editor: <%= @post.user.name %></p><br>
+     <p style="margin-right:30px"><%= @post.content %></p>
+     <p>
+      <%if user_signed_in? %>
+        <%if current_user.is_like2?(@post)%>
+          <form action='/exhibition/<%=@post.id%>/like2' method='POST'>
+            <button class="btn btn-link"><img src = "/img/cart_filled.png" width="30" height="30" ></button> 담기 취소
+          </form>
+        <% else %>
+          <form action='/exhibition/<%=@post.id%>/like2' method='POST'>
+            <button class="btn btn-link"><img src = "/img/cart_empty.png" width="30" height="30"></button> 담기
+          </form>  
+          <%end%>
+      <%end%>
+      </p>
+     <p>
+       <!-- editor만 -->
+        <%if user_signed_in? %>
+           <%if current_user.email==@post.user.email%>
+       <div class="circle"><a href="/exhibition/magazine_edit/<%= @post.id %>">수정</a></div>
+       <div class="circle"><a href="/exhibition/magazine_destroy/<%= @post.id %>" id="delete">삭제</a></div><br>
+          <% end %>
+       <% end %>
+       <!-- editor만 -->
+     </p>
+     </div>
+     </div>
+  <br>
+  <!--<a href='/exhibition/magazine_index'>뒤로</a>-->
+  <br>
+</div>  

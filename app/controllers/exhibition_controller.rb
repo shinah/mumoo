@@ -15,14 +15,14 @@ class ExhibitionController < ApplicationController
     @exhibiRandom = Exhibition.first(4)
     
     # @exhibitions = Exhibition.all
-    @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 2).order("id desc")
+    @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("id desc")
     # like = Like.find_by(user_id: user.id, exhibition_id: exhibition_id)
     type = params[:type]
     if type == '조회수순'
-      @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 2).order("impressions_count DESC")
+      @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("impressions_count DESC")
       # @exhibitions = Exhibition.order('impressions_count DESC')
     elsif type == '좋아요순'
-      @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 2).order('exhibition_count desc')     
+      @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 10).order('exhibition_count desc')     
     else
     end
     
@@ -30,8 +30,12 @@ class ExhibitionController < ApplicationController
     #if value == true
     #else
     #end
+    #@exhibidatarange = Exhibition.where(:created_at => (Exhibition.dataStart)..(Date.today))
+    @startdate = params[:dateStart]
+    @enddate = params[:dateEnd]
+    exhidata = Exhibition.where(:created_at => @startdate..@enddate)
+    @exhibidatarange = exhidata.all
     
-    #@exhibidaterange = Exhibition.where(:created_at => start_date.to_time..end_date.to_time)
   end
   
   def create
@@ -140,20 +144,28 @@ class ExhibitionController < ApplicationController
   def magazine
   end
   
-  def daerim_create
-    post = Post.new
-    
-    post.title = params[:title]
-    post.content = params[:content]
-    
-    post.user_id = params[:user]
-    post.save
-    
-    redirect_to "/"
-  end
+  # def han_index
+  #   @post = Post.find_by(spot_name: params[:museum])
+  #   #쿼리 : 전시장소에 따라 글 출력
+  # end
+  
+  # def daerim_index
+  #   @post = Post.find_by(spot_name: params[:museum])
+  #   #쿼리 : 전시장소에 따라 글 출력
+  # end
+  
+  # def seoul_index
+  #   @post = Post.find_by(spot_name: params[:museum])
+  #   #쿼리 : 전시장소에 따라 글 출력
+  # end
+  
+  # def joong_index
+  #   @post = Post.find_by(spot_name: params[:museum])
+  #   #쿼리 : 전시장소에 따라 글 출력
+  # end
   
   def magazine_index
-    @post = Post.all
+    @post = Post.where(spot_name: params[:spot_name])
     #쿼리 : 전시장소에 따라 글 출력
   end
   
@@ -162,11 +174,11 @@ class ExhibitionController < ApplicationController
     
     post.title = params[:title]
     post.content = params[:content]
-    
     post.user_id = params[:user]
+    post.spot_name = params[:spot_name]
     post.save
     
-    redirect_to "/"
+    redirect_to "/exhibition/magazine_index"
   end
   
   def magazine_edit
@@ -179,14 +191,31 @@ class ExhibitionController < ApplicationController
     edit_post.content = params[:content]
     edit_post.save
     
-    redirect_to '/'
+    redirect_to "/exhibition/magazine_index"
   end
   
   def magazine_destroy
     destroy_post = Post.find(params[:id])
     destroy_post.destroy
     
-    redirect_to "/"
+    redirect_to "/exhibition/magazine_index"
+  end
+  
+  def magazine_show
+    @post = Post.find(params[:id])
+  end
+  
+  def liked_magazine
+  end
+  
+  def liked_magazine_toggle
+    like = Magazine.find_by(user_id: current_user.id, post_id: params[:post_id])
+    if like.nil?
+      Magazine.create(user_id: current_user.id, post_id: params[:post_id])
+    else
+      like.destroy
+    end
+    redirect_to :back
   end
   
 end

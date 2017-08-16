@@ -8,12 +8,17 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :liked_exhibitons, through: :likes, source: :exhibition
   has_many :posts
+  has_many :magazines
+  has_many :liked_posts, through: :magazines, source: :post
 
   #attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   #ratyrate_rater
   
   def is_like?(exhibition)
     Like.find_by(user_id: self.id, exhibition_id: exhibition.id).present?
+  end
+  def is_like2?(post)
+    Magazine.find_by(user_id: self.id, post_id: post.id).present?
   end
   
   def self.find_for_oauth(auth, signed_in_resource = nil)

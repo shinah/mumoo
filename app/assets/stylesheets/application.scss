@@ -60,14 +60,10 @@ html, body {
 }
 
 
-// %test {
-//   position: absolute;
-// 	content: '';
-// 	transition: all .5s;
-// }
 
 .pressedBtn { 
-	padding: 20px 40px;
+  margin-top: 10px;
+	padding: 20px 40px 20px 40px;
 	color: black;
   transform: translate(-15px, -15px);
 	text-decoration: none;

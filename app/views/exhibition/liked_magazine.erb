@@ -1,0 +1,47 @@
+<!-- 좋아요한 메거진 리스트 -->
+
+<style>
+
+.showExhibition {
+  margin-top: 50px;
+}
+
+.showExhibitionBox {
+    width: 200px;
+    height: 250px;
+    border: 1px solid #e0b43b;
+    display: inline-block; 
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.showExhibitionItem {
+    margin: auto;
+    width: 150px;
+    height: 200px;
+} 
+.itemTitle {
+  color: #e0b43b;
+  margin-top: 25px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.itemSpot {
+  font-size: 20px;
+}
+</style>
+<div class="container">
+  <div class="showExhibition">
+    <% current_user.liked_posts.each do |p| %>
+    <div class="showExhibitionBox">
+        <div class="showExhibitionItem">
+          <a href='/exhibition/magazine_index/<%=p.id%>'>
+            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 19)}" %></h4>
+          </a>  
+          <p class="itemSpot">Editor: <%= "#{truncate(p.user.name, :length => 15)}" %></p>
+        </div>
+    </div>
+    <% end %>    
+  </div>
+</div>
