@@ -4,7 +4,7 @@ class ExhibitionController < ApplicationController
   
   require 'open-uri'
   require 'nokogiri'
-  require 'webrick/httputils'
+  #require 'webrick/httputils'
   #require 'addressable/uri'
   
   def index
@@ -61,13 +61,16 @@ class ExhibitionController < ApplicationController
     # 3번째 방법
     # a = @exhibi.spot
     # url = "https://search.naver.com/search.naver?query=#{a}"
-    # doc = Nokogiri::HTML(open(url),nil,'euc-kr')
+    # doc = Nokogiri::HTML(open(url, 'User-Agent' => 'ruby'),nil,'euc-kr')
     
-    # transport_subway = doc.css('dd.subway')
-    # @subway = transport_subway.map
+     #doc.css('dd>dl>dd.subway>ul').each do |x|
+     #   @subway << x.inner_text
+     #end
+     #transport_subway = doc.css('.subway')
+     #@subway = transport_subway.map
     
-    # transport_bus = doc.css('dd.bus')
-    # @bus = transport_bus.map
+     #transport_bus = doc.css('.bus')
+     #@bus = transport_bus.map
   
   end
   
