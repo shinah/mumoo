@@ -25,15 +25,13 @@ html, body {
 }
 
 .navbar-main {
-  margin: 4px;
-   background: #f7e900!important;
-   border: 3px solid black!important;
-   border-radius: 0!important;
-   margin-bottom: 0!important;
+  background: #f7e900!important;
+  border-radius: 0!important;
+  margin-bottom: 0!important;
    
 }
 
-.navbar li { color: #000 }
+.navbar li { color: white }
 
 .nav-center {
     margin-left: 150px;
@@ -53,4 +51,82 @@ html, body {
     height: 2.5em;
   }
      
+}
+
+
+.blackBoderBox {
+  margin: 4px;
+  border: 3px solid black!important;  
+}
+
+
+// %test {
+//   position: absolute;
+// 	content: '';
+// 	transition: all .5s;
+// }
+
+.pressedBtn { 
+	padding: 20px 40px;
+	color: black;
+  transform: translate(-15px, -15px);
+	text-decoration: none;
+	transition: all 0.1s;
+	background-color: white;
+	border: 3px solid black;
+
+	&::before {
+  position: absolute;
+  content: '';
+  transition: all 0.1s;
+  bottom: -18px;
+  height: 15px;
+  width: 105%;
+  left: 5px;
+  transform: skewX(45deg);
+  background: repeating-linear-gradient(
+    60deg,
+    #fff, 
+    #fff 10px, 
+    #000 10px, 
+    #000 20px
+  );
+  border: 3px solid black;
+	}
+
+	&::after {
+  position: absolute;
+  content: '';
+  transition: all 0.1s;
+  right: -18px;
+  height: 110%;
+  width: 15px;
+  bottom: -10px;
+  transform: skewY(45deg);
+  background-color: black;
+  background: repeating-linear-gradient(
+    15deg,
+    #fff, 
+    #fff 10px, 
+    #000 10px, 
+    #000 20px
+  );
+  border: 3px solid black;
+	}
+
+	&:active {
+		margin-left: 10px;
+		margin-top: 10px;
+		&::before {
+      bottom: -3px;
+      height: 0px;
+      left: -3px;
+		}
+		
+    &::after {
+      right: -3px;
+      width: 0px;
+      bottom: -3px;
+		}	
+	}
 }

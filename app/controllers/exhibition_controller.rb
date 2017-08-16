@@ -25,6 +25,13 @@ class ExhibitionController < ApplicationController
       @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 2).order('exhibition_count desc')     
     else
     end
+    
+    #value = Date.parse(Exhibition.dateStart) < Date.today
+    #if value == true
+    #else
+    #end
+    
+    #@exhibidaterange = Exhibition.where(:created_at => start_date.to_time..end_date.to_time)
   end
   
   def create
@@ -131,6 +138,55 @@ class ExhibitionController < ApplicationController
   end
   
   def magazine
+  end
+  
+  def daerim_create
+    post = Post.new
+    
+    post.title = params[:title]
+    post.content = params[:content]
+    
+    post.user_id = params[:user]
+    post.save
+    
+    redirect_to "/"
+  end
+  
+  def magazine_index
+    @post = Post.all
+    #쿼리 : 전시장소에 따라 글 출력
+  end
+  
+  def magazine_create
+    post = Post.new
+    
+    post.title = params[:title]
+    post.content = params[:content]
+    
+    post.user_id = params[:user]
+    post.save
+    
+    redirect_to "/"
+  end
+  
+  def magazine_edit
+     @edit_post = Post.find(params[:id])
+  end
+  
+  def magazine_update
+    edit_post = Post.find(params[:id])
+    edit_post.title = params[:title]
+    edit_post.content = params[:content]
+    edit_post.save
+    
+    redirect_to '/'
+  end
+  
+  def magazine_destroy
+    destroy_post = Post.find(params[:id])
+    destroy_post.destroy
+    
+    redirect_to "/"
   end
   
 end

@@ -1,0 +1,41 @@
+
+.itemDetail {
+  margin-top: 50px;
+  padding: 10px;
+}
+.itemDetailTitle {
+  color: #e0b43b;
+  margin-bottom: 40px;
+}
+.button {
+  border :0;
+  outline :0;
+}
+/*.reply_set{
+  background:#FAFABE;
+}*/
+
+
+.itemDetailBox {
+}
+
+.commentBox {
+  .createCommentInput {
+  }
+  .commentInput {
+  margin-top: 30px;
+  left: 20%;
+  height: 80px;
+  width: 700px;
+  background: #f7e900;
+  color: black;
+  }
+  
+  .createCommentBtn {
+    padding: 50px;
+    display: inline-block;
+  }
+  .commentBtn {
+  }
+}
+

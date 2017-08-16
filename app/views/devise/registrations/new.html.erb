@@ -50,6 +50,11 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
   
+    <label> 닉네임 </label><span class="required"> *</span>
+    <div class="field">
+      <%= f.text_field :name, autofocus: true, :class => 'field-style' %>
+    </div><br />
+    
     <label>이메일 </label><span class="required"> * </span>
     <div class="field">
        <%= f.email_field :email, autofocus: true, :class => 'field-style' %>
@@ -68,11 +73,6 @@
     <label> 비밀번호를 다시 입력해주세요. </label><span class="required"> *</span>
     <div class="field">
       <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'field-style' %>
-    </div><br />
-    
-    <label> 닉네임 </label><span class="required"> *</span>
-    <div class="field">
-      <%= f.text_field :name, autofocus: true, :class => 'field-style' %>
     </div><br />
 
   <div class="actions">

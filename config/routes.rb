@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   get 'exhibition/index'
   get 'exhibition/calendar'
   get 'exhibition/magazine'
+  get 'exhibition/magazine_index'
+  post 'exhibition/magazine_create'
+  get 'exhibition/magazine_edit/:id' => 'exhibition#magazine_edit'
+  get 'exhibition/magazine_destroy/:id' => 'exhibition#magazine_destroy'
+  post 'exhibition/magazine_update/:id' => 'exhibition#magazine_update'
+
+
   get 'exhibition/location'
   get 'exhibition/test'
   get 'exhibition/keywordResult' => 'exhibition/keywordResult'

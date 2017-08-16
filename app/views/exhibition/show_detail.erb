@@ -1,29 +1,12 @@
 <!-- 전시회 상세 정보 페이지 -->
-<head>
   <script type=”text/javascript”>
   
   function say(){
     alert("후기 남기신 후에 별점도 매겨주시면 감사하겠습니다.");
   }
   </script>
-</head>
-<style>
-  .itemDetail {
-    margin-top: 50px;
-    padding: 10px;
-  }
-  .itemDetailTitle {
-    color: #e0b43b;
-    margin-bottom: 40px;
-  }
-  .button {
-    border :0;
-    outline :0;
-  }
-/*.reply_set{
-    background:#FAFABE;
-  }*/
-</style>
+
+<div class="itemDetailBox blackBoderBox">
 <div class="container">
   <div class="itemDetail">
     <a href="/exhibition/main">메인</a>
@@ -92,35 +75,41 @@
     </div>
   </div>
 </div>
-<div class="commentBox">
+</div>
+<div class="commentBox blackBoderBox">
   <%if user_signed_in? %>
+  <div class="createComment">
     <form action='/exhibition/reply_write' method='post'>
-      <div class='form-group'>
+      <div class="createCommentInput">
         <input type='hidden' name='exhibition_id' value="<%= @exhibi.id %>">
         <input type='hidden' name='user' value="<%= current_user.id %>">
-        <textarea name='content' rows='3' cols='120' placeholder='네티켓에 어긋나는 댓글 작성시 임의로 삭제 및 경고조치 받을수 있습니다.' required></textarea>
+        <input name='content' class="commentInput blackBoderBox" placeholder='네티켓에 어긋나는 댓글 작성시 임의로 삭제 및 경고조치 받을수 있습니다.' required >         
       </div>
-      <button type='submit' class='btn btn-default' onclick='say()'>후기 남기기</button>
+      <div class="createCommentBtn">
+        <button type='submit' class='pressedBtn commentBtn' onclick='say()'>후기 남기기</button>        
+      </div>
     </form>
-  <%end%>
+  <% end %>    
+  </div>
+  <div class="printComment">
   
   <h4>전시회 후기</h4>
-  <% @exhibi.replies.each do |r| %>
-    <div class="reply_set">
-      - <%=r.user.name%>님의 후기
-      <br><%= r.content%>   <%#= rating_for r, 'name', disable_after_rate: true %>
-      <br>
-      <br>
-      <%if user_signed_in? %>
-        <%if current_user.email==r.user.email%>
-          <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
-          <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_update_view/<%=r.id%>'>수정</a></button>
+    <% @exhibi.replies.each do |r| %>
+      <div class="reply_set">
+        - <%=r.user.name%>님의 후기
+        <br><%= r.content%>   <%#= rating_for r, 'name', disable_after_rate: true %>
+        <br>
+        <br>
+        <%if user_signed_in? %>
+          <%if current_user.email==r.user.email%>
+            <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
+            <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_update_view/<%=r.id%>'>수정</a></button>
+          <%end%>
         <%end%>
-      <%end%>
-    </div>
-    <br>
-  <% end %>
-  <br><br>
+      </div>
+    <% end %>    
+  </div>
+
 </div>
   <a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a>
 </div><!-- container -->

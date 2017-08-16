@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :replies
   has_many :liked_exhibitons, through: :likes, source: :exhibition
+  has_many :posts
 
   #attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   #ratyrate_rater
@@ -42,14 +43,15 @@ class User < ActiveRecord::Base
   end
  
   def email_required?
-    true
-  end
-  
-  def email_changed?
     false
   end
   
+  #서현 주석처리
+  #def email_changed?
+  #  false
+  #end
+  
   def change
-    remove_index :users, :email
+    remove_index :users, :email, :name
   end
 end
