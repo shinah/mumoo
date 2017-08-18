@@ -17,3 +17,6 @@
 //= require jquery.raty
 //= require ratyrate
 //= require social-share-button
+
+//= require moment 
+//= require fullcalendar

@@ -56,5 +56,14 @@
   <% end %>  
   </div>
   
-  <div id="calendar"></div>
 <div>
+
+<div id='cal'></div>
+
+<script>
+  $('#cal').fullCalendar(
+    {
+              event: '/calendar.json'
+              // put your options and callbacks here
+          });  
+</script>

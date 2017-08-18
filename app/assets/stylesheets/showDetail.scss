@@ -1,4 +1,5 @@
 .itemDetail {
+  background: #f7e900;
 }
 .itemDetailBox {
   margin-top: 50px;
@@ -35,10 +36,16 @@
   }
 }
 
-
+.itemHashtag {
+  height: 100px;
+  width: 100%;
+  float: left;
+}
 .itemDescription {
-  margin-top: 50px;
-  border-top: 3px solid #000;
+  padding: 30px;
+  background: #fff;
+  margin-top: 110px!important;
+  border: 3px solid #000;
   
 }
 .button {
@@ -92,7 +99,8 @@
     
   }
 .commentBox {
-  width: 100%;
+  margin-left: 20px!important;
+  margin-right: 20px!important;
   padding: 10px;
   .createCommentInput {
     margin-top: 15px;
@@ -125,10 +133,14 @@
 
 
 .contentFont {
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .hashtagFont > a {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 200;
+}
+
+.inlineFont {
+  display: inline-block;
 }

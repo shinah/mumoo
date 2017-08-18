@@ -24,9 +24,6 @@
           <%end%>
       <%end%>
       </p>
-      <p>
-         공유하기 <%= social_share_button_tag(" ["+@post.title+"]" ) %>
-      </p>
      <p>
        <!-- editor만 -->
         <%if user_signed_in? %>
@@ -37,6 +34,10 @@
        <% end %>
        <!-- editor만 -->
      </p>
+      <p>
+         <i class="fa fa-share" aria-hidden="true"></i>
+         공유 <%= social_share_button_tag(" ["+@post.title+"]" ) %>
+      </p>
      </div>
      </div>
   <br>

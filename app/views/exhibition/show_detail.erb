@@ -17,7 +17,7 @@
     </div>
     <div class="row">
       <div class="line">
-       <a href="/exhibition/main"><span class="glyphicon glyphicon-arrow-left bigSpan "></span></a> 
+       <a href="/exhibition/main"><span class="glyphicon glyphicon-arrow-left bigSpan" style="color: #000;"></span></a> 
        <span class="viewCount"> 조회 :<%= @exhibi.impressionist_count %></span>
       </div>      
     </div>
@@ -39,7 +39,7 @@
     </div> <!-- row -->
     <div class="itemDetailContentBox">
       <div class="row">
-        <p class="hashtagFont"><%= render_with_hashtags(@exhibi.hashtag) %></p>
+        44
       </div>
       <div class="row"> 
       <div class="col-md-6">
@@ -47,14 +47,29 @@
           <img src=<%= @exhibi.imageAddress%> width="100%">    
         </div>
       </div>
-      <div class="col-md-6 itemDescription">
-        <div class="blackBoderBox">
+      <div class="col-md-6">
+        <div class="itemHashtag">
+          <p class="hashtagFont"><%= render_with_hashtags(@exhibi.hashtag) %></p>
+        </div>
+        <div class="itemDescription">
           <%#= @exhibi.impressionist_count(:filter=>:session_hash) %>
-          <p class="contentFont">일정:  <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></p>
-          <p class="contentFont">지역: <%= @exhibi.location%></p>
-          <p class="contentFont">위치: <%= @exhibi.spot%></p> 
-          <p>가격: <%= @exhibi.price%>원 </p>
-          <p>공유하기 : <%= social_share_button_tag("[ "+@exhibi.title+" ] 같이 가자!! [일정]:" +@exhibi.dateStart+" ~ "+@exhibi.dateEnd+" [위치]:"+ @exhibi.spot)%></p>
+          <span class="glyphicon glyphicon-calendar"></span>
+          <p class="contentFont inlineFont">일정:  <%= @exhibi.start_time.strftime("%Y-%m-%d") %> ~ <%= @exhibi.end_time.strftime("%Y-%m-%d") %></p>
+          <p><%= Time.now.strftime("%Y-%m-%d")  %></p>
+          <% if Time.now.between?(@exhibi.start_time, @exhibi.end_time) %>
+            진행중
+          <% else %>
+            종료
+          <% end %>
+  
+          <span class="glyphicon glyphicon-map-marker"></span>
+          <p class="contentFont inlineFont">지역: <%= @exhibi.location%></p><p></p>
+          <span class="glyphicon glyphicon-flag"></span>
+          <p class="contentFont inlineFont">위치: <%= @exhibi.spot%></p><p></p>
+          <span class="glyphicon glyphicon-piggy-bank"></span>
+          <p class="contentFont inlineFont">가격: <%= @exhibi.price%>원 </p><p></p>
+          <span class="glyphicon glyphicon-share"></span>
+          <p class="contentFont inlineFont">공유하기 : <%= social_share_button_tag("[ "+@exhibi.title+" ] 같이 가자!! [위치]:"+ @exhibi.spot)%></p>
         </div>
         </div>
         <!-- 지도 -->

@@ -25,33 +25,24 @@ class ExhibitionController < ApplicationController
       @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 10).order('exhibition_count desc')     
     else
     end
-    
-    #value = Date.parse(Exhibition.dateStart) < Date.today
-    #if value == true
-    #else
-    #end
-    #@exhibidatarange = Exhibition.where(:created_at => (Exhibition.dataStart)..(Date.today))
-    
-    #@startdate = params[:dateStart]
-    #@enddate = params[:dateEnd]
-    #exhidata = Exhibition.where(:created_at => @startdate..@enddate)
-    #@exhibidatarange = exhidata.all
-   
+
+    # 오늘 진행중인 전시회만 보여주기 
     @exhibi = Exhibition.all
-    # @exhibi.each do |x|
-    #   if Time.zone.today.between?(x.dateStart, x.dateEnd)
-    #     exhibidatarange = x
-    #     exhibidatarange.save
-    #   else
-    #   end
-    # end
+    @exhibi.each do |x|
+      if Time.now.between?(x.start_time, x.end_time)
+        Exhibition.update(x.id, :ing => true)
+      else
+        Exhibition.update(x.id, :ing => false)
+      end
+    end
+    @onlyToday = Exhibition.where(ing: true)
     
     @locationAll = Exhibition.uniq.pluck(:location)
     
   end
   
   def create
-    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], dateStart: params[:dateStart], dateEnd: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], spot_ascii: params[:spot_ascii], time: params[:time], callCenter: params[:callCenter],price: params[:price],hashtag: params[:hashtag])
+    exhibi = Exhibition.create(title: params[:title], imageAddress: params[:imageAddress], start_time: params[:dateStart], end_time: params[:dateEnd], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], spot: params[:spot], spot_ascii: params[:spot_ascii], time: params[:time], callCenter: params[:callCenter],price: params[:price],hashtag: params[:hashtag])
     exhibi.save
     redirect_to'/exhibition/show'
   end
@@ -94,6 +85,7 @@ class ExhibitionController < ApplicationController
       @bus = '정보없음'
     end
     #교통수단
+  
   
   end
   
@@ -219,4 +211,15 @@ class ExhibitionController < ApplicationController
     redirect_to :back
   end
   
+  def test
+    @hashTag = "exo"
+    # @hashTagKor = eval(hashTag)
+    hashtagUrl = "https://www.instagram.com/explore/tags/" + @hashTag
+    @hashtagUri = URI.encode(hashtagUrl)
+    doc = Nokogiri::HTML(open(hashtagUrl))
+    # @img =  doc(._2di5p img)
+    # @unitoKor = eval(doc)
+    @img = doc.css('h2')
+    
+  end
 end

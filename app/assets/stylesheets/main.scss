@@ -49,7 +49,8 @@
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-      display: inline-block;
+  display: inline-block;
+  float: left;
 }
 .sortBox, .sortBox select { 
   width: 240px;}
@@ -71,6 +72,15 @@
 }
 
  select::-ms-expand { display: none; } /* hide default down arrow in IE10*/
+
+.sortByLocation {
+  width: 400px;
+}
+
+.sortBySelect {
+  display: inline-block;
+  float: left;
+}
 
 .sortBy_yellow {
   display: inline-block;

@@ -12,14 +12,15 @@
       </form>
     </div>
   </div>
+  <div class="row">
+    
+  </div>
 </div>
 <div class="middleOfMain blackBoderBox">
 <img class="middleTitle" src="/img/middleTitle.png">
-
-
 <div class="swiper-container">
 <div class="swiper-wrapper">
-  <% @exhibiRandom.each do |r| %>
+  <% @onlyToday.each do |r| %>
   <div class="swiper-slide">
     <a href='/exhibition/show_detail/<%=r.id%>'>
       <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='100%' height="100%">
@@ -30,6 +31,9 @@
     </div>
   </div>
   <% end %>
+  <!--<#% if @exhibidaterange.nil? %>-->
+  <!--<p> 정보 없음 </p>-->
+  <!--<#% end %>-->
 </div>
 
 <div class="swiper-pagination"></div>
@@ -87,6 +91,7 @@
   </div>  
 </div>
 </div>
+
 
 <script src="/js/swiper.min.js"></script>
 

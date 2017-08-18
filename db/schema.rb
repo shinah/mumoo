@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170816204918) do
   create_table "exhibitions", force: :cascade do |t|
     t.text     "title"
     t.text     "imageAddress"
-    t.string   "dateStart"
-    t.string   "dateEnd"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "location"
     t.float    "latitude",          null: false
     t.float    "longitude",         null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170816204918) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "hashtag"
+    t.boolean  "ing"
   end
 
   create_table "exhibitions_tags", id: false, force: :cascade do |t|

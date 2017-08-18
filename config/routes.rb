@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'exhibition#index'
 
   get 'exhibition/index'
-  get 'exhibition/calendar'
+  get '/calendar' =>'exhibition#calendar'
   get 'exhibition/magazine'
   get 'exhibition/magazine_index'
   get 'exhibition/magazine_show/:id' => 'exhibition#magazine_show'

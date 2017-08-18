@@ -4,9 +4,6 @@ class Exhibition < ActiveRecord::Base
   has_many :replies
   has_many :liked_users, through: :likes, source: :user
   has_and_belongs_to_many :tags
-  def start_time
-      self.dateStart
-  end
   
   def self.search(search)
       where("title LIKE ? or location LIKE ? or hashtag LIKE ? ", "%#{search}%", "%#{search}%","%#{search}")

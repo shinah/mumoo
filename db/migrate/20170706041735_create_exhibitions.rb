@@ -3,8 +3,8 @@ class CreateExhibitions < ActiveRecord::Migration
     create_table :exhibitions do |t|
       t.text :title
       t.text :imageAddress
-      t.string :dateStart
-      t.string :dateEnd
+      t.datetime :start_time
+      t.datetime :end_time
       t.string :location
       t.float :latitude, :null => false
       t.float :longitude, :null => false
@@ -16,6 +16,7 @@ class CreateExhibitions < ActiveRecord::Migration
       t.integer :impressions_count
       t.timestamps null: false
       t.string :hashtag
+      t.boolean :ing
     end
   end
 end
