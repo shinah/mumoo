@@ -58,12 +58,12 @@
         <!-- 지도 -->
     </div> 
   
-          <div id="map" style="width:400px;height:300px;">
+          <div id="map" style="width:400px;height:300px;margin-top:30px;"> <!--margin 필수! 없으면 공백 생김-->
         </div>      <!-- 지도 끝 -->
        
           <h4>대중 교통</h4>
-          <p>지하철: <img src="<%= @subway_img %>"> <%= @subway %></p>
-          <p>버스: <%= @bus %></p>
+          <p>지하철: <!--img src="<%#= @subway_img %>"--> <%= @subway %></p>
+          <p>버스: <%= @bus %> </p>
         </tr>
         <tr><h4>시간</h4> <%= @exhibi.time%></tr>
         <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>

@@ -31,10 +31,12 @@ class ExhibitionController < ApplicationController
     #else
     #end
     #@exhibidatarange = Exhibition.where(:created_at => (Exhibition.dataStart)..(Date.today))
-    @startdate = params[:dateStart]
-    @enddate = params[:dateEnd]
-    exhidata = Exhibition.where(:created_at => @startdate..@enddate)
+    startdate = params[:dateStart]
+    enddate = params[:dateEnd]
+    exhidata = Exhibition.where(:created_at => startdate..enddate)
     @exhibidatarange = exhidata.all
+    
+    @locationAll = Exhibition.uniq.pluck(:location)
     
   end
   
@@ -59,18 +61,27 @@ class ExhibitionController < ApplicationController
     impressionist(@exhibi)
     
     #교통수단
-    url = "https://search.naver.com/search.naver?query=#{@exhibi.spot_ascii}"
+    url = "https://search.naver.com/search.naver?query="+@exhibi.spot
+    url = URI.encode(url)
     doc = Nokogiri::HTML(open(url,'User-Agent' => 'ruby'),nil,'utf-8')
     
-    doc.css('dd>dl>dd.subway>ul>li>a').each do |x|
+    doc.css('dd>dl>dd.subway>ul>li').each do |x|
       @subway = x.inner_text
-      doc.css('dd>dl>dd.subway>ul>li>img src').each do |y|
-        @subway_img = y
-      end
+      # doc.css('dd>dl>dd.subway>ul>li>img src').each do |y|
+      #   @subway_img = y
+      # end
+    end
+    
+    if @subway.nil?
+      @subway = '정보없음'
     end
     
     doc.css('dd>dl>dd.bus>ul>li').each do |x|
       @bus = x.inner_text
+    end
+    
+    if @bus.nil?
+      @bus = '정보없음'
     end
     #교통수단
   
@@ -144,26 +155,6 @@ class ExhibitionController < ApplicationController
   def magazine
   end
   
-  # def han_index
-  #   @post = Post.find_by(spot_name: params[:museum])
-  #   #쿼리 : 전시장소에 따라 글 출력
-  # end
-  
-  # def daerim_index
-  #   @post = Post.find_by(spot_name: params[:museum])
-  #   #쿼리 : 전시장소에 따라 글 출력
-  # end
-  
-  # def seoul_index
-  #   @post = Post.find_by(spot_name: params[:museum])
-  #   #쿼리 : 전시장소에 따라 글 출력
-  # end
-  
-  # def joong_index
-  #   @post = Post.find_by(spot_name: params[:museum])
-  #   #쿼리 : 전시장소에 따라 글 출력
-  # end
-  
   def magazine_index
     @post = Post.where(spot_name: params[:spot_name])
     #쿼리 : 전시장소에 따라 글 출력
@@ -178,7 +169,7 @@ class ExhibitionController < ApplicationController
     post.spot_name = params[:spot_name]
     post.save
     
-    redirect_to "/exhibition/magazine_index"
+    redirect_to "/exhibition/magazine"
   end
   
   def magazine_edit
@@ -191,14 +182,14 @@ class ExhibitionController < ApplicationController
     edit_post.content = params[:content]
     edit_post.save
     
-    redirect_to "/exhibition/magazine_index"
+    redirect_to "/exhibition/magazine"
   end
   
   def magazine_destroy
     destroy_post = Post.find(params[:id])
     destroy_post.destroy
     
-    redirect_to "/exhibition/magazine_index"
+    redirect_to "/exhibition/magazine"
   end
   
   def magazine_show

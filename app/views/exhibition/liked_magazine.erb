@@ -36,9 +36,9 @@
     <% current_user.liked_posts.each do |p| %>
     <div class="showExhibitionBox">
         <div class="showExhibitionItem">
-          <a href='/exhibition/magazine_index/<%=p.id%>'>
-            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 19)}" %></h4>
-          </a>  
+          <a href='/exhibition/magazine_show/<%=p.id%>'>
+            <h4 class="itemTitle"><%= "#{truncate(p.title, :length => 10)}" %></h4>
+          </a><br>  
           <p class="itemSpot">Editor: <%= "#{truncate(p.user.name, :length => 15)}" %></p>
         </div>
     </div>

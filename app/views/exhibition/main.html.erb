@@ -56,11 +56,14 @@
 <div class="bodyOfMain blackBoderBox">
 <div class="container">
   <div class="row">
-    <%= form_tag '/exhibition/main#showExhibition' do %>
-      <!--<input type="hidden" name="type" value="1">-->
-      <!--<input type="submit" class="sortBy" value="조회수순" name="type">-->
-      <!--<input type="submit" class="sortBy" value="좋아요순" name="type">-->
-      <!--<button class="btn btn-search" >조회수</button>-->
+    <a href="/exhibition/locationResult"> 지역</a>
+      <select name="locationSelect">
+        <% @locationAll.each do |location| %>
+        <option value="<%= location %>"><%= location %></option>
+        <% end %>
+      </select> 
+    <%#= form_tag '/exhibition/main#showExhibition' do %>
+    <form action="/exhibition/main#showExhibition">
       <div class="sortBox">
         <select name="type">
           <option value="조회수순">조회수순</option>
@@ -68,8 +71,9 @@
         </select>
         <span class="fa fa-sort-desc"></span>
       </div>  
-    <input type="submit" class="sortBy" value="정렬">
-    <% end %>
+      <input type="submit" class="sortBy" value="정렬">
+    </form>
+    <%# end %>
   </div>
   <div id="showExhibition ">
       <% @exhibitions.each do |p| %>

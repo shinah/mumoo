@@ -54,6 +54,7 @@
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+      display: inline-block;
 }
 .sortBox, .sortBox select { 
   width: 240px;}
@@ -64,6 +65,7 @@
   border: none;
   /*hide default down arrow in webkit */
   -webkit-appearance: none; 
+  display: inline-block;
 }
 
 .fa-sort-desc {
@@ -76,6 +78,7 @@
  select::-ms-expand { display: none; } /* hide default down arrow in IE10*/
 
 .sortBy {
+  display: inline-block;
   height: 34px;
   border: 3px solid #000;
   display: inline-block;
@@ -203,3 +206,4 @@
 .itemSpot {
   font-size: 8px;
 }
+
