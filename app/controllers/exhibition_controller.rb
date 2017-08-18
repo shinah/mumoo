@@ -13,7 +13,7 @@ class ExhibitionController < ApplicationController
 
   def main
     @exhibiRandom = Exhibition.all
-    
+    @userAll = User.all
     @hotTag = Exhibition.joins(:tags).group('tagName').order('count_id DESC').limit(10).count(:id)
 
     # 오늘 진행중인 전시회만 보여주기 

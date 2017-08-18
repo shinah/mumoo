@@ -70,17 +70,20 @@
         </div>
         <!-- 지도 -->
     </div> 
-  
-          <div id="map" style="width:400px;height:300px;margin-top:30px;"> <!--margin 필수! 없으면 공백 생김-->
-        </div>      <!-- 지도 끝 -->
-       
-          <h4>대중 교통</h4>
-          <p>지하철: <!--img src="<%#= @subway_img %>"--> <%= @subway %></p>
-          <p>버스: <%= @bus %> </p>
-        </tr>
-        <tr><h4>시간</h4> <%= @exhibi.time%></tr>
-        <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="map" style="width:400px;height:300px;margin-top:30px;"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="moreInfo blackBoderBox">
+          <p>지하철 :<%= @subway %> </p>
+          <p>버스 : <%= @bus %></p>
+          <p>시간 : <%= @exhibi.time%></p>
+          <p>문의 : <%= @exhibi.callCenter%><</p>        
+        </div>
+      </div>
     </div>
+  </div>
 
 </div>
 </div>
@@ -97,6 +100,8 @@
         <button type='submit' class='pressedBtn commentBtn' onclick='say()'>후기 남기기</button>        
       </div>
     </form>
+  <% else %>
+    <img src="/img/commentNo.png" width="200px" style="padding-left: 5px">
   <% end %>    
   </div>
   <div class="printComment">
@@ -111,6 +116,8 @@
             <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
             <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_update_view/<%=r.id%>'>수정</a></button>
           <%end%>
+        <% else %>
+        
         <%end%>
       </div>
     <% end %>    

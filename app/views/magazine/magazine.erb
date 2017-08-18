@@ -1,6 +1,16 @@
 <!--전시회 Magazine -->
 <style>
+@font-face {
+  font-family: 'YouandiModernTR';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../font/YouandiModernTR.eot);
+  src: url(../font/YouandiModernTR.eot?#iefix) format('embedded-opentype'),
+       url(../font/YouandiModernTR.woff) format('woff'),
+       url(../font/YouandiModernTR.ttf) format('opentype');
+}
 .h2{
+  margin: 10px;
   font-weight:600;
 }
 .col-md-4{
@@ -95,9 +105,10 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:16px;
+	font-size:13px;
 	padding:10px 11px;
 	text-decoration:none;
+	text-align: center;
 }
 .look_btn:hover {
 	background-color:#00a4df;
@@ -120,9 +131,7 @@
       <!--<p>예술의전당 전면 왼쪽 날개</p>-->
       <p>@왼쪽 날개 editor</p></center>
       <br><br><br><br><br><br><br><br>
-      <p><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=한가람미술관">
-        <a href="#" class="look_btn">글 둘러보기 >></a>
-        <button type="button" class="btn btn-outline-secondary" style="float: right;">글 둘러보기 &raquo;</button></a></form></p>
+      <p><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=한가람미술관" class="look_btn">글 둘러보기 &raquo;</a></form></p>
     </div>
     <div class="blackBoderBox col-md-4 muse dae" id="note">
       <div class = "blue_color tape center"></div>
@@ -132,7 +141,7 @@
       <!--<p>일상이 예술이 되는 대림 미술관 </p>-->
       <p>@대리미 editor</p></center>
       <br><br><br><br><br><br><br><br>
-      <p align="center"><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=대림미술관"><button class="btn btn-secondary" style="float: right;">글 둘러보기 &raquo;</button></a></form></p>
+      <p align="center"><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=대림미술관" class="look_btn">글 둘러보기 &raquo;</a></form></p>
     </div>
     <div class="blackBoderBox col-md-4 muse seoul" id="note">
       <div class = "white_color tape center"></div>
@@ -142,17 +151,17 @@
       <!--<p>누구나 예술을 느껴라</p>-->
       <p>@아리수 editor</p></center>
       <br><br><br><br><br><br><br><br>
-      <p align="center"><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=서울시립미술관"><button class="btn btn-secondary" style="float: right;">글 둘러보기 &raquo;</button></a></form></p>
-    </div>
+      <p align="center"><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=서울시립미술관"class="look_btn">글 둘러보기 &raquo;</a></form></p>
+      </div>
       <div class="blackBoderBox col-md-4 muse guk" id="note">
-        <div class = "black_color tape center"></div>
+        <div class = "white_color tape center"></div>
       <br>
       <center><h2>NATIONAL</h2>
       <br><br>
       <!--<p>세계적 규모의 박물관으로 총 33만여 국보급 유물 소장</p>-->
       <p>@구그립 editor</p></center>
       <br><br><br><br><br><br><br><br>
-      <p align="center"><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=국립중앙박물관"><button class="btn btn-secondary" style="float: right;">글 둘러보기 &raquo;</button></a></form></p>
+      <p align="center"><form action="/magazine/magazine_index" method="GET"><a href="/magazine/magazine_index?spot_name=국립중앙박물관" class="look_btn">글 둘러보기 &raquo;</a></form></p>
     </div>
 </div>
 <br>

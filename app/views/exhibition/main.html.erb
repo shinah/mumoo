@@ -1,11 +1,13 @@
 <!-- 금주의 인기 전시회, 전시회 검색, 지역 버튼, 전시회 나열(show.erb), 달력 링크 버튼 -->
 
 <div class="topOfMain blackBoderBox">
+  <img class="mainLogoImg" src="/img/mainText.png">
   <div class="row">
     <img class="mainLogoImg" src="/img/mainLogo.png">
   </div>
   <div class="row">
-    <div class="counting" data-count="<% @exhibiRandom.count %>"></div>
+    <span class="count"><%= @exhibiRandom.count %></span>개의 MU와
+    <span class="count">320<%#= @userAll.count %></span>명의 MU-ser가 함께 합니다
   </div>
   <div class="row">
     <div class="searchBox form-group has-feedback">
@@ -38,8 +40,8 @@
         <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='100%' height="100%">
       </a>
       <div class="description">
-        <p style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
-        <p style="font-size: 5px;"><%= r.spot %></p>
+        <p style="font-size: 16px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
+        <p style="font-size: 10px;"><%= r.spot %></p>
       </div>
     </div>
     <% end %>
@@ -51,18 +53,20 @@
 <!-- 전시회 나열 페이지 -->
 <div class="bodyOfMain blackBoderBox">
 <div class="container">
+  <!--<div class="row">-->
+    <!--<div class="sortByLocation">-->
+    <!--  <div class="sortBox">-->
+    <!--  <select name="locationSelect">-->
+    <!--    <%# @locationAll.each do |location| %>-->
+    <!--      <option value="<%#= location %>"><%#= location %></option>-->
+    <!--    <%# end %>-->
+    <!--  </select>        -->
+    <!--  </div>-->
+    <!--  <input type="submit" class="sortBy_yellow" value="GO!">-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="row">
-    <a href="/exhibition/locationResult"> 지역</a>
-    <div class="sortByLocation">
-      <div class="sortBox">
-      <select name="locationSelect">
-        <% @locationAll.each do |location| %>
-          <option value="<%= location %>"><%= location %></option>
-        <% end %>
-      </select>        
-      </div>
-      <input type="submit" class="sortBy_yellow" value="GO!">
-    </div>
+    | <a href="/exhibition/locationResult"> 지역으로 검색하기</a>
     <div class="sortBySelect">
       <%#= form_tag '/exhibition/main#showExhibition' do %>
         <form action="/exhibition/main#showExhibition">
@@ -92,7 +96,7 @@
         <div class="showExhibitionItem">
           <p><img src="/img/heart_filled.png" width="15px"><%= p.likes.size%></p>
           <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
-          <p class="itemSpot"><%= p.hashtag %></p>
+          <!--<p class="itemSpot"><%#= p.hashtag %></p>-->
         </div>
       </div>
       <% end %>    
@@ -107,18 +111,32 @@
 <script src="/js/swiper.min.js"></script>
 
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        coverflow: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true
+var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    coverflow: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows : true
+    }
+});
+
+$('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
         }
     });
+});
+    
+    
 </script>

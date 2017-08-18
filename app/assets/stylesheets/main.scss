@@ -226,13 +226,13 @@
   left: -3px;
   border: 3px solid black!important;
   background-color: #00a3df;
-  padding: 5px 5px;
+  padding: 0px 3px 3px 3px;
   width: 230px;
   height: 40px;
   .itemTitle {
     color: white;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 16px;
   }
 }
 
@@ -252,5 +252,52 @@
 }
 
 .itemSpot {
-  font-size: 8px;
+  font-size: 12px;
+}
+
+#counting
+{
+  width: 100px;
+	height: 100px;
+	background: red;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+  float:left;
+  margin:5px;
+}
+.count
+{
+  line-height: 100px;
+  color: #000;
+  margin-left:30px;
+  font-size: 30px;
+}
+#talkbubble {
+   width: 120px;
+   height: 80px;
+   background: red;
+   position: relative;
+   -moz-border-radius:    10px;
+   -webkit-border-radius: 10px;
+   border-radius:         10px;
+  float:left;
+  margin:20px;
+}
+#talkbubble:before {
+   content:"";
+   position: absolute;
+   right: 100%;
+   top: 26px;
+   width: 0;
+   height: 0;
+   border-top: 13px solid transparent;
+   border-right: 26px solid red;
+   border-bottom: 13px solid transparent;
+}
+
+.linker
+{
+  font-size : 20px;
+  font-color: black;
 }
