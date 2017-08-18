@@ -5,22 +5,27 @@
    <!-- 에디터만 -->
      <div class=" blackBoderBox">
         <div class="container">
+         <!--<center>-->
      <h3> <i class="fa fa-quote-left" aria-hidden="true"></i> <%= @post.title %> <i class="fa fa-quote-right" aria-hidden="true"></i> </h3>
  </a>
-     <p>Editor: <%= @post.user.name %></p><br>
+     <p>Editor <%= @post.user.name %></p><br>
+     <!--</center>-->
      <p style="margin-right:30px"><%= @post.content %></p>
      <p>
       <%if user_signed_in? %>
         <%if current_user.is_like2?(@post)%>
           <form action='/exhibition/<%=@post.id%>/like2' method='POST'>
-            <button class="btn btn-link"><img src = "/img/cart_filled.png" width="30" height="30" ></button> 담기 취소
+            <button class="btn btn-link"><img src = "/img/scrap_filled.png" width="60" height="60" ></button> 담기 취소
           </form>
         <% else %>
           <form action='/exhibition/<%=@post.id%>/like2' method='POST'>
-            <button class="btn btn-link"><img src = "/img/cart_empty.png" width="30" height="30"></button> 담기
+            <button class="btn btn-link"><img src = "/img/scrap_empty.png" width="60" height="60"></button> 담기
           </form>  
           <%end%>
       <%end%>
+      </p>
+      <p>
+         공유하기 <%= social_share_button_tag(" ["+@post.title+"]" ) %>
       </p>
      <p>
        <!-- editor만 -->

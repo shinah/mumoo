@@ -28,12 +28,18 @@
 }
 
 .itemDetailContentBox{ 
-  margin-top: 100px;
-  
   .itemDetailImg {
     padding: 0;
     box-shadow: 15px 15px 0 black;
+    margin-right: 0px;
   }
+}
+
+
+.itemDescription {
+  margin-top: 50px;
+  border-top: 3px solid #000;
+  
 }
 .button {
   border :0;
@@ -49,24 +55,34 @@
   height: 50px;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
+  .bigSpan {
+    font-size: 25px;
+    vertical-align: middle;
+    margin-top: 8px;
+    margin-left: 10px;
+}
   .viewCount {
     display: inline-block;
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 300;
     text-align: center;
+    float: right;
+    margin-top: 8px;
+    margin-right: 10px;
   }
 }
+
 
 .likeBtn {
   width: 100px;
   height: auto;
   float: right;
-  background-image: url("/img/likeBg.png");
-  background-size: 70% auto;
-  background-repeat: no-repeat;
-  background-position: center center;
+  // background-image: url("/img/likeBg.png");
+  // background-size: 70% auto;
+  // background-repeat: no-repeat;
+  // background-position: center center;
   text-align: center;
-  margin-top: -5px;
+  margin-top: 10px;
   text-align: center;
   }
 .btn-like {
@@ -110,4 +126,9 @@
 
 .contentFont {
   font-size: 10px;
+}
+
+.hashtagFont > a {
+  font-size: 30px;
+  font-weight: 200;
 }

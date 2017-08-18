@@ -9,7 +9,7 @@
 <div class="itemDetail blackBoderBox">
 <div class="container">
   <div class="itemDetailBox">
-    <a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a>
+    <!--a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a-->
     <div class="row">
       <div class="itemDetailTitleBox">
         <p class="itemDetailTitle"><%= @exhibi.title%></p>
@@ -17,10 +17,8 @@
     </div>
     <div class="row">
       <div class="line">
-       <a href="/exhibition/main">메인 / </a> 
-       <span class="viewCount">
-        조회 :<%= @exhibi.impressionist_count %>
-       </span>
+       <a href="/exhibition/main"><span class="glyphicon glyphicon-arrow-left bigSpan "></span></a> 
+       <span class="viewCount"> 조회 :<%= @exhibi.impressionist_count %></span>
       </div>      
     </div>
     <div class="row">
@@ -37,22 +35,26 @@
           <%end%>
         <% end %>
         <p class="likeCount"><%=@exhibi.likes.size%> </p>       
-      </div>          
-    </div>
+      </div> <!-- likeBtn -->         
+    </div> <!-- row -->
     <div class="itemDetailContentBox">
       <div class="row">
+        <p class="hashtagFont"><%= render_with_hashtags(@exhibi.hashtag) %></p>
+      </div>
+      <div class="row"> 
       <div class="col-md-6">
         <div class="itemDetailImg blackBoderBox">
           <img src=<%= @exhibi.imageAddress%> width="100%">    
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="itemDescription blackBoderBox">
+      <div class="col-md-6 itemDescription">
+        <div class="blackBoderBox">
           <%#= @exhibi.impressionist_count(:filter=>:session_hash) %>
-          <p class="contentFont"><%= render_with_hashtags(@exhibi.hashtag) %></p>
           <p class="contentFont">일정:  <%= @exhibi.dateStart%> ~ <%=@exhibi.dateEnd%></p>
           <p class="contentFont">지역: <%= @exhibi.location%></p>
-          <p class="contentFont">위치: <%= @exhibi.spot%></p>          
+          <p class="contentFont">위치: <%= @exhibi.spot%></p> 
+          <p>가격: <%= @exhibi.price%>원 </p>
+          <p>공유하기 : <%= social_share_button_tag("[ "+@exhibi.title+" ] 같이 가자!! [일정]:" +@exhibi.dateStart+" ~ "+@exhibi.dateEnd+" [위치]:"+ @exhibi.spot)%></p>
         </div>
         </div>
         <!-- 지도 -->
@@ -67,7 +69,6 @@
         </tr>
         <tr><h4>시간</h4> <%= @exhibi.time%></tr>
         <tr><h4>문의</h4> <%= @exhibi.callCenter%></tr>
-        <tr><h4>가격</h4> <%= @exhibi.price%>원</tr>
     </div>
 
 </div>

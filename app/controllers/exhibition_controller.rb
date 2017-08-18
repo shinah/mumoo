@@ -12,7 +12,7 @@ class ExhibitionController < ApplicationController
   end
 
   def main
-    @exhibiRandom = Exhibition.first(4)
+    @exhibiRandom = Exhibition.all
     
     # @exhibitions = Exhibition.all
     @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("id desc")
@@ -31,10 +31,20 @@ class ExhibitionController < ApplicationController
     #else
     #end
     #@exhibidatarange = Exhibition.where(:created_at => (Exhibition.dataStart)..(Date.today))
-    startdate = params[:dateStart]
-    enddate = params[:dateEnd]
-    exhidata = Exhibition.where(:created_at => startdate..enddate)
-    @exhibidatarange = exhidata.all
+    
+    #@startdate = params[:dateStart]
+    #@enddate = params[:dateEnd]
+    #exhidata = Exhibition.where(:created_at => @startdate..@enddate)
+    #@exhibidatarange = exhidata.all
+   
+    @exhibi = Exhibition.all
+    # @exhibi.each do |x|
+    #   if Time.zone.today.between?(x.dateStart, x.dateEnd)
+    #     exhibidatarange = x
+    #     exhibidatarange.save
+    #   else
+    #   end
+    # end
     
     @locationAll = Exhibition.uniq.pluck(:location)
     

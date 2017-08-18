@@ -15,65 +15,55 @@
 </div>
 <div class="middleOfMain blackBoderBox">
 <img class="middleTitle" src="/img/middleTitle.png">
-<div id="myCarousel" class="carousel fdi-Carousel slide">
- <!-- Carousel items -->
-  <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-    <div class="carousel-inner onebyone-carosel">
-      <div class="item active">
-        <% @exhibiRandom.each do |r| %>
-          <div class="col-md-2">
-              <a href='/exhibition/show_detail/<%=r.id%>'>
-                <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
-              </a>
-            <div class="description">
-              <p style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
-              <p style="font-size: 5px;"><%= r.spot %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="item">
-        <% @exhibiRandom.each do |r| %>
-          <div class="col-md-3">
-            <a href='/exhibition/show_detail/<%=r.id%>'>
-              <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='150px' height="210px">
-            </a>
-            <div class="description">
-              <h5 style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></h5>
-              <p style="font-size: 5px;"><%= r.spot %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
+
+
+<div class="swiper-container">
+<div class="swiper-wrapper">
+  <% @exhibiRandom.each do |r| %>
+  <div class="swiper-slide">
+    <a href='/exhibition/show_detail/<%=r.id%>'>
+      <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='100%' height="100%">
+    </a>
+    <div class="description">
+      <p style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
+      <p style="font-size: 5px;"><%= r.spot %></p>
     </div>
-    <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
-    <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
   </div>
-  <!--/carousel-inner-->
-</div><!--/myCarousel-->  
+  <% end %>
+</div>
+
+<div class="swiper-pagination"></div>
+</div>
 </div>
 <!-- 전시회 나열 페이지 -->
 <div class="bodyOfMain blackBoderBox">
 <div class="container">
   <div class="row">
     <a href="/exhibition/locationResult"> 지역</a>
+    <div class="sortByLocation">
+      <div class="sortBox">
       <select name="locationSelect">
         <% @locationAll.each do |location| %>
-        <option value="<%= location %>"><%= location %></option>
+          <option value="<%= location %>"><%= location %></option>
         <% end %>
-      </select> 
-    <%#= form_tag '/exhibition/main#showExhibition' do %>
-    <form action="/exhibition/main#showExhibition">
-      <div class="sortBox">
-        <select name="type">
-          <option value="조회수순">조회수순</option>
-          <option value="좋아요순">좋아요순</option>
-        </select>
-        <span class="fa fa-sort-desc"></span>
-      </div>  
-      <input type="submit" class="sortBy" value="정렬">
-    </form>
-    <%# end %>
+      </select>        
+      </div>
+      <input type="submit" class="sortBy_yellow" value="GO!">
+    </div>
+    <div class="sortBySelect">
+      <%#= form_tag '/exhibition/main#showExhibition' do %>
+        <form action="/exhibition/main#showExhibition">
+          <div class="sortBox">
+            <select name="type">
+              <option value="조회수순">조회수순</option>
+              <option value="좋아요순">좋아요순</option>
+            </select>
+            <span class="fa fa-sort-desc"></span>
+          </div>  
+          <input type="submit" class="sortBy_black" value="정렬">
+        </form>
+      <%# end %>
+    </div>
   </div>
   <div id="showExhibition ">
       <% @exhibitions.each do |p| %>
@@ -98,89 +88,21 @@
 </div>
 </div>
 
+<script src="/js/swiper.min.js"></script>
+
 <script>
-  var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-
-class Carousel extends React.Component {
-    
-    constructor(props) {
-        super(props)
-        this.state = {
-            items: this.props.items,
-            active: this.props.active,
-            direction: ''
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
         }
-        this.rightClick = this.moveRight.bind(this)
-        this.leftClick = this.moveLeft.bind(this)
-    }
-
-    generateItems() {
-        var items = []
-        var level
-        console.log(this.state.active)
-        for (var i = this.state.active - 2; i < this.state.active + 3; i++) {
-            var index = i
-            if (i < 0) {
-                index = this.state.items.length + i
-            } else if (i >= this.state.items.length) {
-                index = i % this.state.items.length
-            }
-            level = this.state.active - i
-            items.push(<Item key={index} id={this.state.items[index]} level={level} />)
-        }
-        return items
-    }
-    
-    moveLeft() {
-        var newActive = this.state.active
-        newActive--
-        this.setState({
-            active: newActive < 0 ? this.state.items.length - 1 : newActive,
-            direction: 'left'
-        })
-    }
-    
-    moveRight() {
-        var newActive = this.state.active
-        this.setState({
-            active: (newActive + 1) % this.state.items.length,
-            direction: 'right'
-        })
-    }
-    
-    render() {
-        return(
-            <div id="carousel" className="noselect">
-                <div className="arrow arrow-left" onClick={this.leftClick}><i className="fi-arrow-left"></i></div>
-                <ReactCSSTransitionGroup 
-                    transitionName={this.state.direction}>
-                    {this.generateItems()}
-                </ReactCSSTransitionGroup>
-                <div className="arrow arrow-right" onClick={this.rightClick}><i className="fi-arrow-right"></i></div>
-            </div>
-        )
-    }
-}
-
-class Item extends React.Component {
-    
-    constructor(props) {
-        super(props)
-        this.state = {
-            level: this.props.level
-        }
-    }
-    
-    render() {
-        const className = 'item level' + this.props.level
-        return(
-            <div className={className}>
-                {this.props.id}
-            </div>
-        )
-    }
-}
-
-var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ReactDOM.render(<Carousel items={items} active={0}/>, document.getElementById('app'))
-</script>
+    });
+    </script>
