@@ -1,0 +1,46 @@
+<style>
+.button{
+ margin-left:auto; 
+ margin-right:0;
+}
+.top{
+ /*background-image: url(/img/magazine_top.png);*/
+ /*width="320px"; height="40px"; background-repeat:no-repeat;*/
+}
+</style>
+
+<br>
+<div class="container">
+ <!-- 에디터만 -->
+ <div class="top">
+ <center>
+  <p>
+   <% if current_page?('https://miniexhibition-shinah1234.c9users.io/magazine/magazine_index?spot_name=%ED%95%9C%EA%B0%80%EB%9E%8C%EB%AF%B8%EC%88%A0%EA%B4%80')%>
+    <i class="fa fa-university" aria-hidden="true"></i> 한가람 미술관 <i class="fa fa-university" aria-hidden="true"></i>
+   <% elsif current_page?('https://miniexhibition-shinah1234.c9users.io/magazine/magazine_index?spot_name=%EB%8C%80%EB%A6%BC%EB%AF%B8%EC%88%A0%EA%B4%80')%>
+    <i class="fa fa-university" aria-hidden="true"></i> 대림 미술관 <i class="fa fa-university" aria-hidden="true"></i>
+   <% elsif current_page?('https://miniexhibition-shinah1234.c9users.io/magazine/magazine_index?spot_name=%EC%84%9C%EC%9A%B8%EC%8B%9C%EB%A6%BD%EB%AF%B8%EC%88%A0%EA%B4%80')%>
+    <i class="fa fa-university" aria-hidden="true"></i> 서울 시립 미술관 <i class="fa fa-university" aria-hidden="true"></i>
+   <% elsif current_page?('https://miniexhibition-shinah1234.c9users.io/magazine/magazine_index?spot_name=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80')%>
+    <i class="fa fa-university" aria-hidden="true"></i> 국립 중앙 박물관 <i class="fa fa-university" aria-hidden="true"></i>
+   <% else %>
+   <% end %>
+  </p>
+ </center>
+ </div>
+<a href='/magazine/magazineRegister'><button type="button" class="btn btn-outline-warning" style="float: right;"><i class="fa fa-pencil-square-o" aria-hidden="true"> 포스팅</i></button></a><br><br>
+ <!-- 에디터만 -->
+<% @post.each do |post| %>
+ <a href='/magazine/magazine_show/<%=post.id%>'>
+   <div class=" blackBoderBox">
+     <div class="container">
+     <h3> <%= post.title %> </h3>
+ </a>
+     <p>Editor <%= post.user.name %></p>
+     
+     </div>
+     </div>
+  <% end %>
+  
+</div>
+

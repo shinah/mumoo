@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :liked_posts, through: :magazines, source: :post
 
   #attr_accessible :email, :password, :password_confirmation, :remember_me, :name
-  #ratyrate_rater
+  ratyrate_rater
   
   def is_like?(exhibition)
     Like.find_by(user_id: self.id, exhibition_id: exhibition.id).present?

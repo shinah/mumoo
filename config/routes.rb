@@ -6,18 +6,19 @@ Rails.application.routes.draw do
 
   get 'exhibition/index'
   get '/calendar' =>'exhibition#calendar'
-  get 'exhibition/magazine'
-  get 'exhibition/magazine_index'
-  get 'exhibition/magazine_show/:id' => 'exhibition#magazine_show'
+  get '/calendar2' => 'exhibition#calendar2'
+  get 'magazine/magazine'
+  get 'magazine/magazine_index'
+  get 'magazine/magazine_show/:id' => 'magazine#magazine_show'
   # get 'exhibition/han_index'
   # get 'exhibition/daerim_index'
   # get 'exhibition/seoul_index'
   # get 'exhibition/joong_index'
-  post 'exhibition/magazine_create'
-  get 'exhibition/magazine_edit/:id' => 'exhibition#magazine_edit'
-  get 'exhibition/magazine_destroy/:id' => 'exhibition#magazine_destroy'
-  post 'exhibition/magazine_update/:id' => 'exhibition#magazine_update'
-  get 'exhibition/magazineRegister'
+  post 'magazine/magazine_create'
+  get 'magazine/magazine_edit/:id' => 'magazine#magazine_edit'
+  get 'magazine/magazine_destroy/:id' => 'magazine#magazine_destroy'
+  post 'magazine/magazine_update/:id' => 'magazine#magazine_update'
+  get 'magazine/magazineRegister'
 
 
   get 'exhibition/location'
@@ -41,8 +42,8 @@ Rails.application.routes.draw do
   post 'exhibition/reply_update/:id' => 'exhibition#reply_update'
   
   get 'exhibition/hashtag/:tagname' =>'exhibition#hashtags'
-  get 'exhibition/liked_magazine'
-  post 'exhibition/:post_id/like2' => 'exhibition#liked_magazine_toggle';
+  get 'magazine/liked_magazine'
+  post 'magazine/:post_id/like2' => 'magazine#liked_magazine_toggle';
   
 
   # The priority is based upon order of creation: first created -> highest priority.

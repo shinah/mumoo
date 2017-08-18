@@ -1,15 +1,9 @@
 <!-- 전시회 상세 정보 페이지 -->
-  <script type=”text/javascript”>
-  
-  function say(){
-    alert("후기 남기신 후에 별점도 매겨주시면 감사하겠습니다.");
-  }
-  </script>
 
 <div class="itemDetail blackBoderBox">
 <div class="container">
   <div class="itemDetailBox">
-    <!--a href="/exhibition/destroy/<%= @exhibi.id %>">전시회 정보 삭제</a-->
+    <!--a href="/exhibition/destroy/<%#= @exhibi.id %>">전시회 정보 삭제</a-->
     <div class="row">
       <div class="itemDetailTitleBox">
         <p class="itemDetailTitle"><%= @exhibi.title%></p>
@@ -38,9 +32,6 @@
       </div> <!-- likeBtn -->         
     </div> <!-- row -->
     <div class="itemDetailContentBox">
-      <div class="row">
-        44
-      </div>
       <div class="row"> 
       <div class="col-md-6">
         <div class="itemDetailImg blackBoderBox">
@@ -55,11 +46,16 @@
           <%#= @exhibi.impressionist_count(:filter=>:session_hash) %>
           <span class="glyphicon glyphicon-calendar"></span>
           <p class="contentFont inlineFont">일정:  <%= @exhibi.start_time.strftime("%Y-%m-%d") %> ~ <%= @exhibi.end_time.strftime("%Y-%m-%d") %></p>
+
           <p><%= Time.now.strftime("%Y-%m-%d")  %></p>
-          <% if Time.now.between?(@exhibi.start_time, @exhibi.end_time) %>
+          <% if @exhibi.start_time < Time.now %>
+            <% if Time.now.between?(@exhibi.start_time, @exhibi.end_time) %>
             진행중
+            <% else %>
+              종료
+            <% end %>
           <% else %>
-            종료
+            예정
           <% end %>
   
           <span class="glyphicon glyphicon-map-marker"></span>
@@ -104,14 +100,12 @@
   <% end %>    
   </div>
   <div class="printComment">
-  
-  <h4>전시회 후기</h4>
+  <hr class="blackLine">
+  <img src="/img/commentTitle.png" width="200px" style="padding-left: 5px">
     <% @exhibi.replies.each do |r| %>
       <div class="reply_set">
-        - <%=r.user.name%>님의 후기
-        <br><%= r.content%>   <%#= rating_for r, 'name', disable_after_rate: true %>
-        <br>
-        <br>
+        <p><span class="glyphicon glyphicon-user"></span> <%= r.user.name %> <%= rating_for r, 'star' %></p>
+        <%= rating_for r, 'star' %> | <%= r.content%> 
         <%if user_signed_in? %>
           <%if current_user.email==r.user.email%>
             <button class="btn btn-outline-danger btn-sm"><a href='/exhibition/reply_delete/<%=r.id%>'>삭제</a></button> 
@@ -127,6 +121,10 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a422123e9d34becdb38214c20865844c"></script>
 <script>
+
+function say(){
+  alert("후기 남기신 후에 별점도 매겨주시면 감사하겠습니다.");
+}
     var container = document.getElementById('map');
     var options = {
        center: new daum.maps.LatLng(<%= @exhibi.latitude %>, <%= @exhibi.longitude %>),

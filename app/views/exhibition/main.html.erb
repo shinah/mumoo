@@ -5,6 +5,9 @@
     <img class="mainLogoImg" src="/img/mainLogo.png">
   </div>
   <div class="row">
+    <div class="counting" data-count="<% @exhibiRandom.count %>"></div>
+  </div>
+  <div class="row">
     <div class="searchBox form-group has-feedback">
       <form action="/exhibition/keywordResult" method="GET">
         <input type="text" class="searchInput" name="search" placeholder="검색어를 입력해주세요">
@@ -12,33 +15,39 @@
       </form>
     </div>
   </div>
+</div>
+<div class="topOfMain2 blackBoderBox">
   <div class="row">
-    
+    <img class="hashtagTitleImg" src="/img/hashtagTitle.png">
+  </div>
+  <div class="row">
+    <% @hotTag.each do |hash| %>
+    <div class="mostTag">
+      <a href="https://miniexhibition-shinah1234.c9users.io/exhibition/hashtag/<%= hash[0] %>">#<%= hash[0] %></a>
+    </div>
+    <% end %>
   </div>
 </div>
 <div class="middleOfMain blackBoderBox">
 <img class="middleTitle" src="/img/middleTitle.png">
-<div class="swiper-container">
-<div class="swiper-wrapper">
-  <% @onlyToday.each do |r| %>
-  <div class="swiper-slide">
-    <a href='/exhibition/show_detail/<%=r.id%>'>
-      <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='100%' height="100%">
-    </a>
-    <div class="description">
-      <p style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
-      <p style="font-size: 5px;"><%= r.spot %></p>
+  <div class="swiper-container">
+  <div class="swiper-wrapper">
+    <% @onlyToday.each do |r| %>
+    <div class="swiper-slide">
+      <a href='/exhibition/show_detail/<%=r.id%>'>
+        <img src="<%= r.imageAddress %>" alt="<%= r.title %>" class="img-responsive center-block" width='100%' height="100%">
+      </a>
+      <div class="description">
+        <p style="font-size: 8px;"><%= "#{truncate(r.title, :length => 10)}" %></p>
+        <p style="font-size: 5px;"><%= r.spot %></p>
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
-  <!--<#% if @exhibidaterange.nil? %>-->
-  <!--<p> 정보 없음 </p>-->
-  <!--<#% end %>-->
+  <div class="swiper-pagination"></div>
+  </div>
 </div>
 
-<div class="swiper-pagination"></div>
-</div>
-</div>
 <!-- 전시회 나열 페이지 -->
 <div class="bodyOfMain blackBoderBox">
 <div class="container">
@@ -81,7 +90,9 @@
             <img src='<%=p.imageAddress%>' width='180px' height="240px">          
         </div>
         <div class="showExhibitionItem">
+          <p><img src="/img/heart_filled.png" width="15px"><%= p.likes.size%></p>
           <p class="itemSpot"><%= "#{truncate(p.spot, :length => 15)}" %></p>
+          <p class="itemSpot"><%= p.hashtag %></p>
         </div>
       </div>
       <% end %>    
@@ -110,4 +121,4 @@
             slideShadows : true
         }
     });
-    </script>
+</script>

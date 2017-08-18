@@ -14,17 +14,7 @@ class ExhibitionController < ApplicationController
   def main
     @exhibiRandom = Exhibition.all
     
-    # @exhibitions = Exhibition.all
-    @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("id desc")
-    # like = Like.find_by(user_id: user.id, exhibition_id: exhibition_id)
-    type = params[:type]
-    if type == '조회수순'
-      @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("impressions_count DESC")
-      # @exhibitions = Exhibition.order('impressions_count DESC')
-    elsif type == '좋아요순'
-      @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 10).order('exhibition_count desc')     
-    else
-    end
+    @hotTag = Exhibition.joins(:tags).group('tagName').order('count_id DESC').limit(10).count(:id)
 
     # 오늘 진행중인 전시회만 보여주기 
     @exhibi = Exhibition.all
@@ -37,7 +27,23 @@ class ExhibitionController < ApplicationController
     end
     @onlyToday = Exhibition.where(ing: true)
     
+    
+        
+    # 정렬을 위한
+    @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("id desc")
+    # like = Like.find_by(user_id: user.id, exhibition_id: exhibition_id)
+    type = params[:type]
+      if type == '조회수순'
+        @exhibitions = Exhibition.all.paginate(:page => params[:page], per_page: 10).order("impressions_count DESC")
+        # @exhibitions = Exhibition.order('impressions_count DESC')
+      elsif type == '좋아요순'
+        @exhibitions = Exhibition.joins(:likes).select('exhibitions.*, count(exhibition_id) as "exhibition_count"').group(:exhibition_id).all.paginate(:page => params[:page], per_page: 10).order('exhibition_count desc')     
+      else
+    end
+    
+    # 지역 선택 정렬을 위한
     @locationAll = Exhibition.uniq.pluck(:location)
+    
     
   end
   
@@ -90,6 +96,9 @@ class ExhibitionController < ApplicationController
   end
   
   def calendar
+    @exhibi = Exhibition.all
+  end
+  def calendar2
     @exhibi = Exhibition.all
   end
   
@@ -154,62 +163,7 @@ class ExhibitionController < ApplicationController
       @exhibititons = @tag.exhibitions
   end
   
-  def magazine
-  end
   
-  def magazine_index
-    @post = Post.where(spot_name: params[:spot_name])
-    #쿼리 : 전시장소에 따라 글 출력
-  end
-  
-  def magazine_create
-    post = Post.new
-    
-    post.title = params[:title]
-    post.content = params[:content]
-    post.user_id = params[:user]
-    post.spot_name = params[:spot_name]
-    post.save
-    
-    redirect_to "/exhibition/magazine"
-  end
-  
-  def magazine_edit
-     @edit_post = Post.find(params[:id])
-  end
-  
-  def magazine_update
-    edit_post = Post.find(params[:id])
-    edit_post.title = params[:title]
-    edit_post.content = params[:content]
-    edit_post.save
-    
-    redirect_to "/exhibition/magazine"
-  end
-  
-  def magazine_destroy
-    destroy_post = Post.find(params[:id])
-    destroy_post.destroy
-    
-    redirect_to "/exhibition/magazine"
-  end
-  
-  def magazine_show
-    @post = Post.find(params[:id])
-  end
-  
-  def liked_magazine
-  end
-  
-  def liked_magazine_toggle
-    like = Magazine.find_by(user_id: current_user.id, post_id: params[:post_id])
-    if like.nil?
-      Magazine.create(user_id: current_user.id, post_id: params[:post_id])
-    else
-      like.destroy
-    end
-    redirect_to :back
-  end
   
   def test
     @hashTag = "exo"

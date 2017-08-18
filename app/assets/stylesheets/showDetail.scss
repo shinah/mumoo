@@ -101,7 +101,9 @@
 .commentBox {
   margin-left: 20px!important;
   margin-right: 20px!important;
+  margin-bottom: 20px!important;
   padding: 10px;
+  background: #fff;
   .createCommentInput {
     margin-top: 15px;
     // float: left;
@@ -128,6 +130,10 @@
   .commentBtn {
     display: inline;
   }
+}
+
+.reply_set {
+  padding: 10px;
 }
 
 

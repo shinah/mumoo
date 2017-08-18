@@ -46,14 +46,14 @@
         </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/calendar">Monthly Exhibition</a></li>
-            <li><a href="/exhibition/magazine">Museum Magazine</a></li>
+            <li><a href="/magazine/magazine">Museum Magazine</a></li>
             <% if user_signed_in? %>
               <%= current_user.name %>님 환영합니다
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">마이페이지<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="/exhibition/liked_list">찜한 전시회</a></li>
-                  <li><a href="/exhibition/liked_magazine">찜한 매거진</a></li>
+                  <li><a href="/magazine/liked_magazine">찜한 매거진</a></li>
                   <li class="divider"></li>
                   <li><a href="/users/edit">정보 수정</a></li>
                 </ul>

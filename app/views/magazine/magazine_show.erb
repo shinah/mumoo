@@ -1,9 +1,24 @@
+<style>
+  .cycle-btn{
+    
+  }
+  
+  .itemPost{ 
+  .itemPostShadow {
+    padding: 0;
+    box-shadow: 15px 15px 0 black;
+    margin-right: 0px;
+  }
+}
+</style>
 <br>
 <div class="container">
    <!-- 에디터만 -->
-<a href='/exhibition/magazineRegister'><button type="button" class="btn btn-outline-warning" style="float: right;"><i class="fa fa-pencil-square-o" aria-hidden="true"> 포스팅</i></button></a><br><br>
+<a href='/magazine/magazineRegister'><button type="button" class="btn btn-outline-warning" style="float: right;"><i class="fa fa-pencil-square-o" aria-hidden="true"> 포스팅</i></button></a><br><br>
    <!-- 에디터만 -->
-     <div class=" blackBoderBox">
+    <div class="itemPost">
+      <div class="row">
+        <div class="itemPostShadow blackBoderBox">
         <div class="container">
          <!--<center>-->
      <h3> <i class="fa fa-quote-left" aria-hidden="true"></i> <%= @post.title %> <i class="fa fa-quote-right" aria-hidden="true"></i> </h3>
@@ -14,11 +29,11 @@
      <p>
       <%if user_signed_in? %>
         <%if current_user.is_like2?(@post)%>
-          <form action='/exhibition/<%=@post.id%>/like2' method='POST'>
+          <form action='/magazine/<%=@post.id%>/like2' method='POST'>
             <button class="btn btn-link"><img src = "/img/scrap_filled.png" width="60" height="60" ></button> 담기 취소
           </form>
         <% else %>
-          <form action='/exhibition/<%=@post.id%>/like2' method='POST'>
+          <form action='/magazine/<%=@post.id%>/like2' method='POST'>
             <button class="btn btn-link"><img src = "/img/scrap_empty.png" width="60" height="60"></button> 담기
           </form>  
           <%end%>
@@ -26,12 +41,12 @@
       </p>
      <p>
        <!-- editor만 -->
-        <%if user_signed_in? %>
-           <%if current_user.email==@post.user.email%>
-       <div class="circle"><a href="/exhibition/magazine_edit/<%= @post.id %>">수정</a></div>
-       <div class="circle"><a href="/exhibition/magazine_destroy/<%= @post.id %>" id="delete">삭제</a></div><br>
+          <%if user_signed_in? %>
+            <%if current_user.email==@post.user.email%>
+              <div class="circle"><a href="/magazine/magazine_edit/<%= @post.id %>">수정</a></div>
+              <div class="circle"><a href="/magazine/magazine_destroy/<%= @post.id %>" id="delete">삭제</a></div><br>
+            <% end %>
           <% end %>
-       <% end %>
        <!-- editor만 -->
      </p>
       <p>
@@ -40,7 +55,9 @@
       </p>
      </div>
      </div>
+     </div>
+     </div>
   <br>
-  <!--<a href='/exhibition/magazine_index'>뒤로</a>-->
+  <!--<a href='/magazine/magazine_index'>뒤로</a>-->
   <br>
 </div>  
