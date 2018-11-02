@@ -17,7 +17,9 @@ gem 'figaro'
 gem 'impressionist'
 gem 'will_paginate', '~> 3.1.0'
 
-
+gem "sprockets", ">= 3.7.2"
+gem "ffi", ">= 1.9.24"
+gem "rails-html-sanitizer", ">= 1.0.4"
 gem "simple_calendar", "~> 2.0"
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
